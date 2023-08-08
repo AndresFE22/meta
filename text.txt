@@ -1,0 +1,16 @@
+   "EnergyConservation": {
+                "description": "Plan strategies to reduce energy consumption and promote sustainability.",
+                "activities": [
+                    {"name": "Activity 2", "completed": False},
+                    {"name": "Activity 5", "completed": False},
+                    {"name": "Activity 8", "completed": False}
+                ]
+            },
+            "PlasticReduction": {
+                "description": "Develop plans to minimize plastic usage and contribute to environmental health.",
+                "activities": [
+                    {"name": "Activity 3", "completed": False},
+                    {"name": "Activity 6", "completed": False},
+                    {"name": "Activity 9", "completed": False}
+                ]
+            }
