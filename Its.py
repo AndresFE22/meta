@@ -4,8 +4,8 @@ class IntelligentTutor:
         self.current_activity = 0
         self.activities = [
             "Activity 1: Identify Climate Change Factors",
-            #"Activity 2: Plan Energy Conservation Strategy",
-            #"Activity 3: Reduce Plastic Usage"
+            "Activity 2: Plan Energy Conservation Strategy",
+            "Activity 3: Reduce Plastic Usage"
         ]
     
     def start_tutorial(self):
@@ -41,48 +41,95 @@ class IntelligentTutor:
         
         
         
-        
-        
-        
-        
-        
 class LearningGoals:
     def __init__(self):
         self.goals = {
             "ClimateChangeFactors": {
-                "description": "Analyze different factors contributing to climate change.",
-                "activities": [
-                    {"name": "Activity 1", "completed": False},
-                   # {"name": "Activity 4", "completed": False},
-                    #{"name": "Activity 7", "completed": False}
-                ]
+                "levels": {
+                    "Low": [
+                        {"name": "Activity 1", "completed": False},
+                        {"name": "Activity 2", "completed": False},
+                        {"name": "Activity 3", "completed": False}
+                    ],
+                    "Medium": [
+                        {"name": "Activity 10", "completed": False},
+                        {"name": "Activity 11", "completed": False},
+                        {"name": "Activity 12", "completed": False}
+                    ],
+                    "High": [
+                        {"name": "Activity 19", "completed": False},
+                        {"name": "Activity 20", "completed": False},
+                        {"name": "Activity 21", "completed": False}
+                    ]
+                }
             },
-        }
+
+            "EnergyConservation": {
+                "levels": {
+                    "Low": [
+                        {"name": "Activity 4", "completed": False},
+                        {"name": "Activity 5", "completed": False},
+                        {"name": "Activity 6", "completed": False}
+                    ],
+                    "Medium": [
+                        {"name": "Activity 13", "completed": False},
+                        {"name": "Activity 14", "completed": False},
+                        {"name": "Activity 15", "completed": False}
+                    ],
+                    "High": [
+                        {"name": "Activity 22", "completed": False},
+                        {"name": "Activity 23", "completed": False},
+                        {"name": "Activity 24", "completed": False}
+                    ]
+                }
+            },
+
+            "PlasticReduction": {
+                "levels": {
+                    "Low": [
+                        {"name": "Activity 7", "completed": False},
+                        {"name": "Activity 8", "completed": False},
+                        {"name": "Activity 9", "completed": False}
+                    ],
+                    "Medium": [
+                        {"name": "Activity 16", "completed": False},
+                        {"name": "Activity 17", "completed": False},
+                        {"name": "Activity 18", "completed": False}
+                    ],
+                    "High": [
+                        {"name": "Activity 25", "completed": False},
+                        {"name": "Activity 26", "completed": False},
+                        {"name": "Activity 27", "completed": False}
+                    ]
+                }
+            }
+        }  
     
     def mark_activity_completed(self, activity_name):
         for goal in self.goals.values():
-            for activity in goal["activities"]:
-                if activity["name"] == activity_name:
-                    activity["completed"] = True
+            for level_activities in goal["levels"].values():
+                for activity in level_activities:
+                    if activity["name"] == activity_name:
+                        activity["completed"] = True
     
     def recommend_learning_path(self):
         recommended_path = []
         for goal_name, goal_data in self.goals.items():
-            for activity in goal_data["activities"]:
-                if not activity["completed"]:
-                    recommended_path.append(activity["name"])
-                    break
+            for level_activities in goal_data["levels"].values():
+                for activity in level_activities:
+                    if not activity["completed"]:
+                        recommended_path.append(activity["name"])
         return recommended_path
     
     def print_learning_goals(self):
         print("Learning Goals:")
         for goal_name, goal_data in self.goals.items():
             print(f"- {goal_name}:")
-            print(f"  Description: {goal_data['description']}")
-            print("  Activities:")
-            for activity in goal_data["activities"]:
-                status = "Completed" if activity["completed"] else "Not Completed"
-                print(f"    {activity['name']}: {status}")
+            for level, level_activities in goal_data["levels"].items():
+                print(f"  {level} Level:")
+                for activity in level_activities:
+                    status = "Completed" if activity["completed"] else "Not Completed"
+                    print(f"    {activity['name']}: {status}")
             print()
 
         

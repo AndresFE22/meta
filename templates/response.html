@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recommended Learning Path</title>
+</head>
+<body>
+    <h1>Recommended Learning Path:</h1>
+    <ul>
+        {% for activity_name in recommended_path %}
+            <li>{{ activity_name }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
