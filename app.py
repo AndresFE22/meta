@@ -12,8 +12,13 @@ def init():
     return render_template('index.html')
 
 @app.route('/diagnosisrender')
-def diagnosis():
-    return render_template('diagnosis.html')
+def diagnosisState():
+    return render_template('diagnosisState.html')
+
+@app.route('/diagnosisStyles')
+def diagnosisStyles():
+    return render_template('diagnosisStyles.html')
+
 
 @app.route('/diagnosis', methods=['POST'])
 def diagnosis_lowlvl():
@@ -67,6 +72,33 @@ def diagnosis_lowlvl():
 
     return render_template('response.html', response=response, recommended_path=recommended_path)
     
+
+@app.route('/test', methods=['POST'])
+def testStyles():
+    answers = request.form
+    
+    print(answers)
+    
+    learning_styles = {
+        'Activo/reflexivo': [1, 5, 9, 13, 17],
+        'Sensorial/intuitivo': [2, 6, 10, 14, 18],
+        'Visual/verbal': [3, 7, 11, 15, 19],
+        'Secuencial/global': [4, 8, 12, 16, 20]
+    }
+    
+    selected_styles = set()
+    
+    for pregunta, respuesta in answers.items():
+        pregunta_numero = int(pregunta.lstrip('pregunta'))
+        for estilo, preguntas in learning_styles.items():
+            if pregunta_numero in preguntas and respuesta == 'a':
+                selected_styles.add(estilo)
+                
+    print(selected_styles)     
+    
+    return render_template("responsestyles.html", selected_styles=selected_styles)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

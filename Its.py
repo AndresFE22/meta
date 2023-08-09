@@ -131,6 +131,8 @@ class LearningGoals:
                     status = "Completed" if activity["completed"] else "Not Completed"
                     print(f"    {activity['name']}: {status}")
             print()
+            
+           
 
         
         

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test de Estilo de Aprendizaje</title>
+    <style>
+        .question-slide {
+            display: none;
+
+        }
+
+        .question-slide.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test de Estilo de Aprendizaje</h1>
+    
+    <form action="/test" method="post">
+        <div class="question-slide active" id="question1" >
+            <label for="pregunta1">1. Entiendo mejor algo:</label>
+            <select name="pregunta1" id="pregunta1">
+                <option value="a">si lo practico.</option>
+                <option value="b">si pienso en ello.</option>
+            </select>
+            <br>
+            <input type="button" value="Siguiente" onclick="showQuestion('question2')">
+        </div>
+        
+        <div class="question-slide" id="question2">
+            <label for="pregunta2">2. Me considero:</label>
+            <select name="pregunta2" id="pregunta2">
+                <option value="a">realista.</option>
+                <option value="b">innovador.</option>
+            </select>
+            <br>
+            <input type="button" value="Siguiente" onclick="showQuestion('question3')">
+        </div>
+        
+        <div class="question-slide" id="question3">
+            <label for="pregunta3">3. Cuando pienso acerca de lo que hice ayer, es más probable que lo haga sobre la base de:</label>
+            <select name="pregunta3" id="pregunta3">
+                <option value="a">una imagen.</option>
+                <option value="b">palabras.</option>
+            </select>
+            <br>
+            <input type="button" value="Siguiente" onclick="showQuestion('question4')">
+        </div>
+        
+        <div class="question-slide" id="question4">
+            <label for="pregunta4">4. Tengo tendencia a:</label>
+            <select name="pregunta4" id="pregunta4">
+                <option value="a">entender los detalles de un tema pero no ver claramente su estructura completa.</option>
+                <option value="b">entender la estructura completa pero no ver claramente los detalles.</option>
+            </select>
+            <br>
+            <input type="button" value="Siguiente" onclick="showQuestion('question5')">
+        </div>
+        
+        <div class="question-slide" id="question5">
+            <label for="pregunta5">5. Cuando estoy aprendiendo algo nuevo, me ayuda:</label>
+            <select name="pregunta5" id="pregunta5">
+                <option value="a">hablar de ello.</option>
+                <option value="b">pensar en ello.</option>
+            </select>
+            <br>
+            <input type="button" value="Siguiente" onclick="showQuestion('question6')">
+        </div>
+        
+        <div class="question-slide" id="question6">
+            <label for="pregunta6">6. Si yo fuera profesor, yo preferiría dar un curso:</label>
+            <select name="pregunta6" id="pregunta6">
+                <option value="a">que trate sobre hechos y situaciones reales de la vida.</option>
+                <option value="b">que trate con ideas y teorías.</option>
+            </select>
+            <br>
+            <input type="button" value="Siguiente" onclick="showQuestion('question7')">
+        </div>
+        
+        <div class="question-slide" id="question7">
+            <label for="pregunta7">7. Prefiero obtener información nueva de:</label>
+            <select name="pregunta7" id="pregunta7">
+                <option value="a">imágenes, diagramas, gráficas o mapas.</option>
+                <option value="b">instrucciones escritas o información verbal.</option>
+            </select>
+            <br>
+            <input type="button" value="Siguiente" onclick="showQuestion('question8')">
+        </div>
+        
+        <div class="question-slide" id="question8">
+            <label for="pregunta8">8. Una vez que entiendo:</label>
+            <select name="pregunta8" id="pregunta8">
+                <option value="a">todas las partes, entiendo el total.</option>
+                <option value="b">el total de algo, entiendo como encajan sus partes.</option>
+            </select>
+            <br>
+            <input type="button" value="Siguiente" onclick="showQuestion('question9')">
+        </div>
+        
+        <div class="question-slide" id="question9">
+            <label for="pregunta9">9. En un grupo de estudio que trabaja con un material difícil, es más probable que:</label>
+            <select name="pregunta9" id="pregunta9">
+                <option value="a">participe y contribuya con ideas.</option>
+                <option value="b">no participe y solo escuche.</option>
+            </select>
+            <br>
+            <input type="button" value="Siguiente" onclick="showQuestion('question10')">
+        </div>
+        
+        <div class="question-slide" id="question10">
+            <label for="pregunta10">10. Es más fácil para mí:</label>
+            <select name="pregunta10" id="pregunta10">
+                <option value="a">aprender hechos.</option>
+                <option value="b">aprender conceptos.</option>
+            </select>
+            <br>
+            <input type="button" value="Siguiente" onclick="showQuestion('question11')">
+        </div>
+        
+        <div class="question-slide" id="question11">
+            <label for="pregunta11">11. En un libro con muchas imágenes y gráficas es más probable que:</label>
+            <select name="pregunta11" id="pregunta11">
+                <option value="a">revise cuidadosamente las imágenes y las gráficas.</option>
+                <option value="b">me concentre en el texto escrito.</option>
+            </select>
+            <br>
+            <input type="button" value="Siguiente" onclick="showQuestion('question12')">
+        </div>
+        
+        <div class="question-slide" id="question12">
+            <label for="pregunta12">12. Cuando resuelvo problemas de matemáticas:</label>
+            <select name="pregunta12" id="pregunta12">
+                <option value="a">generalmente trabajo sobre las soluciones con un paso a la vez.</option>
+                <option value="b">frecuentemente sé cuales son las soluciones, pero luego tengo dificultad para imaginarme los pasos para llegar a ellas.</option>
+            </select>
+            <br>
+            <input type="button" value="Siguiente" onclick="showQuestion('question13')">
+        </div>
+        
+        <div class="question-slide" id="question13">
+            <label for="pregunta13">13. En las clases a las que he asistido:</label>
+            <select name="pregunta13" id="pregunta13">
+                <option value="a">he llegado a saber como son muchos de los estudiantes.</option>
+                <option value="b">raramente he llegado a saber como son muchos estudiantes.</option>
+            </select>
+            <br>
+            <input type="button" value="Siguiente" onclick="showQuestion('question14')">
+        </div>
+        
+        <div class="question-slide" id="question14">
+            <label for="pregunta14">14. Cuando leo temas que no son de ficción, prefiero:</label>
+            <select name="pregunta14" id="pregunta14">
+                <option value="a">algo que me enseñe nuevos hechos o me diga como hacer algo.</option>
+                <option value="b">algo que me dé nuevas ideas en que pensar.</option>
+            </select>
+            <br>
+            <input type="button" value="Siguiente" onclick="showQuestion('question15')">
+        </div>
+        
+        <div class="question-slide" id="question15">
+            <label for="pregunta15">15. Me gustan los maestros:</label>
+            <select name="pregunta15" id="pregunta15">
+                <option value="a">que utilizan muchos esquemas en el pizarrón.</option>
+                <option value="b">que toman mucho tiempo para explicar.</option>
+            </select>
+            <br>
+            <input type="button" value="Siguiente" onclick="showQuestion('question16')">
+        </div>
+        
+        <div class="question-slide" id="question16">
+            <label for="pregunta16">16. Cuando estoy analizando un cuento o una novela:</label>
+            <select name="pregunta16" id="pregunta16">
+                <option value="a">pienso en los incidentes y trato de acomodarlos para configurar los temas.</option>
+                <option value="b">me doy cuenta de cuales son los temas cuando termino de leer y luego tengo que regresar y encontrar los incidentes que los demuestran.</option>
+            </select>
+            <br>
+            <input type="button" value="Siguiente" onclick="showQuestion('question17')">
+        </div>
+        
+        <div class="question-slide" id="question17">
+            <label for="pregunta17">17. Cuando comienzo a resolver un problema de tarea, es más probable que:</label>
+            <select name="pregunta17" id="pregunta17">
+                <option value="a">comience a trabajar en su solución inmediatamente.</option>
+                <option value="b">primero trate de entender completamente el problema.</option>
+            </select>
+            <br>
+            <input type="button" value="Siguiente" onclick="showQuestion('question18')">
+        </div>
+        
+        <div class="question-slide" id="question18">
+            <label for="pregunta18">18. Prefiero la idea de:</label>
+            <select name="pregunta18" id="pregunta18">
+                <option value="a">certeza.</option>
+                <option value="b">teoría.</option>
+            </select>
+            <br>
+            <input type="button" value="Siguiente" onclick="showQuestion('question19')">
+        </div>
+        
+        <div class="question-slide" id="question19">
+            <label for="pregunta19">19. Recuerdo mejor:</label>
+            <select name="pregunta19" id="pregunta19">
+                <option value="a">lo que veo.</option>
+                <option value="b">lo que oigo.</option>
+            </select>
+            <br>
+            <input type="button" value="Siguiente" onclick="showQuestion('question20')">
+        </div>
+        
+        <div class="question-slide" id="question20">
+            <label for="pregunta20">20. Es más importante para mí que un profesor:</label>
+            <select name="pregunta20" id="pregunta20">
+                <option value="a">Exponga el material en pasos secuenciales claros.</option>
+                <option value="b">me dé un panorama general y relacione el material con otros temas.</option>
+            </select>
+            <br>
+            <input type="button" value="Siguiente" onclick="showQuestion('question21')">
+        </div>
+
+        <div class="question-slide" id="question21">
+            <h2>Test finalizado</h2>
+            <br>
+            <input type="submit" value="Enviar">
+
+        </div>
+    </form>
+</body>
+
+<script>
+    function showQuestion(questionId) {
+        var slides = document.getElementsByClassName('question-slide');
+        for (var i = 0; i < slides.length; i++) {
+            slides[i].classList.remove('active');
+        }
+        document.getElementById(questionId).classList.add('active');
+    }
+</script>
+</html>

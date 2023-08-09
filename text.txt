@@ -14,3 +14,41 @@
                     {"name": "Activity 9", "completed": False}
                 ]
             }
+
+
+
+             dame un clase llamada estudiante, que metodos necesito, necesito una metodo que contenga los estilos de aprendizaje del sestudiante segun felder y silverman, que son activo/refleivo, sensorial/intuitivo, visual/verbal y secuencial/global  
+
+
+             from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
+# Define la ruta para procesar el formulario
+@app.route('/procesar_test', methods=['POST'])
+def procesar_test():
+    respuestas = request.form  # Obtiene las respuestas del formulario
+    
+    # Define los estilos de aprendizaje para cada grupo de preguntas
+    estilos = {
+        'Activo/reflexivo': [1, 5, 9, 13, 17],
+        'Sensorial/intuitivo': [2, 6, 10, 14, 18],
+        'Visual/verbal': [3, 7, 11, 15, 19],
+        'Secuencial/global': [4, 8, 12, 16, 20]
+    }
+    
+    # Procesa las respuestas y determina los estilos de aprendizaje asociados
+    estilos_seleccionados = set()
+    for pregunta, respuesta in respuestas.items():
+        pregunta_numero = int(pregunta.lstrip('pregunta'))
+        for estilo, preguntas in estilos.items():
+            if pregunta_numero in preguntas and respuesta == 'a':
+                estilos_seleccionados.add(estilo)
+    
+    return render_template('resultados.html', estilos=estilos_seleccionados)
+
+if __name__
+
+
+
+    
