@@ -25,42 +25,52 @@
 <table>
     <tr>
         <th></th>
+        <th>5</th>
         <th>3</th>
         <th>1</th>
         <th>1</th>
         <th>3</th>
+        <th>5</th>
         <th></th>
     </tr>
     <tr>
         <td>ACTIVO</td>
+        <td {% if results[0]['dominant_style'] == 'Activo' and results[0]['subtraction'] == 5 %} class="x-mark" {% endif %}></td>
         <td {% if results[0]['dominant_style'] == 'Activo' and results[0]['subtraction'] == 3 %} class="x-mark" {% endif %}></td>
         <td {% if results[0]['dominant_style'] == 'Activo' and results[0]['subtraction'] == 1 %} class="x-mark" {% endif %}></td>
         <td {% if results[0]['dominant_style'] == 'Reflexivo' and results[0]['subtraction'] == 1 %} class="x-mark" {% endif %}></td>
         <td {% if results[0]['dominant_style'] == 'Reflexivo' and results[0]['subtraction'] == 3 %} class="x-mark" {% endif %}></td>
+        <td {% if results[0]['dominant_style'] == 'Reflexivo' and results[0]['subtraction'] == 5 %} class="x-mark" {% endif %}></td>
         <td>REFLEXIVO</td>
     </tr>
     <tr>
         <td>SENSORIAL</td>
+        <td {% if results[1]['dominant_style'] == 'Sensorial' and results[1]['subtraction'] == 5 %} class="x-mark" {% endif %}></td>
         <td {% if results[1]['dominant_style'] == 'Sensorial' and results[1]['subtraction'] == 3 %} class="x-mark" {% endif %}></td>
         <td {% if results[1]['dominant_style'] == 'Sensorial' and results[1]['subtraction'] == 1 %} class="x-mark" {% endif %}></td>
         <td {% if results[1]['dominant_style'] == 'Intuitivo' and results[1]['subtraction'] == 1 %} class="x-mark" {% endif %}></td>
         <td {% if results[1]['dominant_style'] == 'Intuitivo' and results[1]['subtraction'] == 3 %} class="x-mark" {% endif %}></td>
+        <td {% if results[1]['dominant_style'] == 'Intuitivo' and results[1]['subtraction'] == 5 %} class="x-mark" {% endif %}></td>
         <td>INTUITIVO</td>
     </tr>
     <tr>
         <td>VISUAL</td>
+        <td {% if results[2]['dominant_style'] == 'Visual' and results[2]['subtraction'] == 5 %} class="x-mark" {% endif %}></td>
         <td {% if results[2]['dominant_style'] == 'Visual' and results[2]['subtraction'] == 3 %} class="x-mark" {% endif %}></td>
         <td {% if results[2]['dominant_style'] == 'Visual' and results[2]['subtraction'] == 1 %} class="x-mark" {% endif %}></td>
         <td {% if results[2]['dominant_style'] == 'Verbal' and results[2]['subtraction'] == 1 %} class="x-mark" {% endif %}></td>
         <td {% if results[2]['dominant_style'] == 'Verbal' and results[2]['subtraction'] == 3 %} class="x-mark" {% endif %}></td>
+        <td {% if results[2]['dominant_style'] == 'Verbal' and results[2]['subtraction'] == 5 %} class="x-mark" {% endif %}></td>
         <td>VERBAL</td>
     </tr>
     <tr>
         <td>SECUENCIAL</td>
+        <td {% if results[3]['dominant_style'] == 'Secuencial' and results[3]['subtraction'] == 5 %} class="x-mark" {% endif %}></td>
         <td {% if results[3]['dominant_style'] == 'Secuencial' and results[3]['subtraction'] == 3 %} class="x-mark" {% endif %}></td>
         <td {% if results[3]['dominant_style'] == 'Secuencial' and results[3]['subtraction'] == 1 %} class="x-mark" {% endif %}></td>
         <td {% if results[3]['dominant_style'] == 'Global' and results[3]['subtraction'] == 1 %} class="x-mark" {% endif %}></td>
         <td {% if results[3]['dominant_style'] == 'Global' and results[3]['subtraction'] == 3 %} class="x-mark" {% endif %}></td>
+        <td {% if results[3]['dominant_style'] == 'Global' and results[3]['subtraction'] == 5 %} class="x-mark" {% endif %}></td>
         <td>GLOBAL</td>
     </tr>
 </table>

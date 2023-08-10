@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, session
 from Its import IntelligentTutor, LearningGoals
 import json
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'
 
 # Crea una instancia de LearningGoals
 learning_goals = LearningGoals()
@@ -69,6 +70,8 @@ def diagnosis_lowlvl():
         
     response = learning_goals.print_learning_goals()
     recommended_path = learning_goals.recommend_learning_path()
+    
+    session['recommended_path'] = recommended_path
 
     return render_template('response.html', response=response, recommended_path=recommended_path)
     
@@ -101,7 +104,35 @@ def testStyles():
     for result in results:
         print(f"Estilo: {result['dominant_style']}, Resta: {result['subtraction']}")
 
+    session['results'] = results
+    
     return render_template("responsestyles.html", results=results)
+
+
+
+@app.route('/Activity', methods=['GET', 'POST'])
+def activity():
+    recommended_path = session.get('recommended_path')
+    results = session.get('results')
+        
+    formatted_data = []
+
+    for entry in recommended_path:
+        formatted_data.append([entry['goal'], entry['level'], entry['activity']])
+        
+    navi_perso = results[-1]['dominant_style']
+    
+    max_subtraction_style = max(results[:-1], key=lambda x: x["subtraction"])["dominant_style"]
+
+    style = [navi_perso, max_subtraction_style]
+             
+    
+    print(recommended_path, results)
+    print(formatted_data)
+    print(style)
+        
+    
+    return jsonify(activity_list=formatted_data, style_list=style) 
 
 
 

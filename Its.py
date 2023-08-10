@@ -10,7 +10,7 @@ class IntelligentTutor:
     
     def start_tutorial(self):
         print("Welcome to the Intelligent Tutor System!")
-        print("Let's develop your problem-solving skills related to climate change.")
+        print("Let's develop your probtemplates/activity/High/Global/Activo/activity1lem-solving skills related to climate change.")
         self._display_activity()
     
     def _display_activity(self):
@@ -21,6 +21,7 @@ class IntelligentTutor:
             print("\nCongratulations! You've completed all activities.")
     
     def _provide_guidance(self):
+        
         activity_info = {
             0: "Analyze different factors contributing to climate change.",
            #1: "Plan a strategy to reduce energy consumption at home.",
@@ -115,11 +116,16 @@ class LearningGoals:
     def recommend_learning_path(self):
         recommended_path = []
         for goal_name, goal_data in self.goals.items():
-            for level_activities in goal_data["levels"].values():
-                for activity  in level_activities:
+            for level_name, level_activities in goal_data["levels"].items():
+                for activity in level_activities:
                     if not activity["completed"]:
-                        recommended_path.append(activity["name"])
+                        recommended_path.append({
+                            "goal": goal_name,
+                            "level": level_name,
+                            "activity": activity["name"]
+                    })
         return recommended_path
+
     
     def print_learning_goals(self):
         print("Learning Goals:")
