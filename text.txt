@@ -51,4 +51,15 @@ if __name__
 
 
 
-    
+            for question, data in selected_styles.items():
+            style, response = data['style'], data['response']
+            first_style, second_style = style.split('/')
+            if response == 'a':
+                styles_data[first_style] += 1
+            elif response == 'b':
+                styles_data[second_style] += 1
+            max_score = max(styles_data.values())
+            min_score = min(styles_data.values())
+            subtraction = max_score - min_score
+            dominant_style = [styles for styles, score in styles_data.items() if score == max_score]
+            results.append({'dominant_style': dominant_style, 'subtraction': subtraction})
