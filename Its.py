@@ -116,7 +116,7 @@ class LearningGoals:
         recommended_path = []
         for goal_name, goal_data in self.goals.items():
             for level_activities in goal_data["levels"].values():
-                for activity in level_activities:
+                for activity  in level_activities:
                     if not activity["completed"]:
                         recommended_path.append(activity["name"])
         return recommended_path
@@ -131,8 +131,56 @@ class LearningGoals:
                     status = "Completed" if activity["completed"] else "Not Completed"
                     print(f"    {activity['name']}: {status}")
             print()
+
+
+    def calculate_learning_style_score(self, selected_styles):
+        styles_data = {
+            'style_1': {
+                'Activo': 0,
+                'Reflexivo': 0
+        },
+            'style_2': {
+                'Sensorial': 0,
+                'Intuitivo': 0
+        },
+            'style_3': {
+                'Visual': 0,
+                'Verbal': 0
+        },
+            'style_4': {
+                'Secuencial': 0,
+                'Global': 0
+        },
+    }
+
+        results = []
+
+        for question, data in selected_styles.items():
+            style, response = data['style'], data['response']
+            first_style, second_style = style.split('/')
+            styles_key = None
+        
+            if 'Activo' in style and 'Reflexivo' in style:
+                styles_key = 'style_1'
+            elif 'Sensorial' in style and 'Intuitivo' in style:
+                styles_key = 'style_2'
+            elif 'Visual' in style and 'Verbal' in style:
+                styles_key = 'style_3'
+            elif 'Secuencial' in style and 'Global' in style:
+                styles_key = 'style_4'
+        
+            if styles_key is not None:
+                if response == 'a':
+                    styles_data[styles_key][first_style] += 1
+                elif response == 'b':
+                    styles_data[styles_key][second_style] += 1
+    
+        for style_key, style_scores in styles_data.items():
+            style_difference = max(style_scores.values()) - min(style_scores.values())
+            dominant_style = max(style_scores, key=style_scores.get)
+            results.append({'style': style_key, 'dominant_style': dominant_style, 'subtraction': style_difference})
             
-           
+        return results
 
         
         

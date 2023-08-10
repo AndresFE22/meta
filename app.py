@@ -76,27 +76,32 @@ def diagnosis_lowlvl():
 @app.route('/test', methods=['POST'])
 def testStyles():
     answers = request.form
-    
-    print(answers)
-    
+        
     learning_styles = {
-        'Activo/reflexivo': [1, 5, 9, 13, 17],
-        'Sensorial/intuitivo': [2, 6, 10, 14, 18],
-        'Visual/verbal': [3, 7, 11, 15, 19],
-        'Secuencial/global': [4, 8, 12, 16, 20]
+        'Activo/Reflexivo': [1, 5, 9, 13, 17],
+        'Sensorial/Intuitivo': [2, 6, 10, 14, 18],
+        'Visual/Verbal': [3, 7, 11, 15, 19],
+        'Secuencial/Global': [4, 8, 12, 16, 20]
     }
     
-    selected_styles = set()
+    selected_styles = { }
     
-    for pregunta, respuesta in answers.items():
-        pregunta_numero = int(pregunta.lstrip('pregunta'))
-        for estilo, preguntas in learning_styles.items():
-            if pregunta_numero in preguntas and respuesta == 'a':
-                selected_styles.add(estilo)
+    for ask, response in answers.items():
+        ask_num = int(ask.lstrip('pregunta'))
+        for style, asks in learning_styles.items():
+            if ask_num in asks:
+                selected_styles[ask_num] = {'style': style, 'response': response}
+                break
                 
-    print(selected_styles)     
+    print(selected_styles)
     
-    return render_template("responsestyles.html", selected_styles=selected_styles)
+    results = learning_goals.calculate_learning_style_score(selected_styles)
+    print(results)
+
+    for result in results:
+        print(f"Estilo: {result['dominant_style']}, Resta: {result['subtraction']}")
+
+    return render_template("responsestyles.html", results=results)
 
 
 
