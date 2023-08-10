@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mostrar Contenidos</title>
+  <style>
+    .container {
+      display: flex;
+      justify-content: space-between;
+    }
+    .level {
+      border: 1px solid black;
+      padding: 10px;
+    }
+    .style {
+      border: 1px solid gray;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+        <div class="level" id="Low">
+          <div class="style" id="Secuencial">
+            <div class="style" id="Activo">
+                <div class="goals" id="ClimateChangeFactors">
+                    <div id="activity1" style="display: none;"></div>
+                    <div id="activity2" style="display: none;"></div>
+                    <div id="activity3" style="display: none;"></div>
+                </div>
+                <div class="goals" id="EnergyConservation">
+                    <div id="activity4" style="display: none;"></div>
+                    <div id="activity5" style="display: none;"></div>
+                    <div id="activity6" style="display: none;"></div>
+                </div>
+                <div class="goals" id="PlasticReduction">
+                    <div id="activity7" style="display: none;"></div>
+                    <div id="activity8" style="display: none;"></div>
+                    <div id="activity8" style="display: none;"></div>
+                </div>
+                                             
+            </div>
+            <div class="style" id="Reflexivo"></div>
+            <div class="style" id="Sensorial"></div>
+            <div class="style" id="Intuitivo"></div>
+            <div class="style" id="Visual"></div>
+            <div class="style" id="Verbal"></div>
+          </div>
+          <div class="style" id="Global">
+            <div class="style" id="Activo"></div>
+            <div class="style" id="Reflexivo"></div>
+            <div class="style" id="Sensorial"></div>
+            <div class="style" id="Intuitivo"></div>
+            <div class="style" id="Visual"></div>
+            <div class="style" id="Verbal"></div>
+          </div>
+        </div>
+        <div class="level" id="Medium">
+          <div class="style" id="Secuencial">
+            <div class="style" id="Activo"></div>
+            <div class="style" id="Reflexivo"></div>
+            <div class="style" id="Sensorial"></div>
+            <div class="style" id="Intuitivo"></div>
+            <div class="style" id="Visual"></div>
+            <div class="style" id="Verbal"></div>
+          </div>
+          <div class="style" id="Global">
+            <div class="style" id="Activo"></div>
+            <div class="style" id="Reflexivo"></div>
+            <div class="style" id="Sensorial"></div>
+            <div class="style" id="Intuitivo"></div>
+            <div class="style" id="Visual"></div>
+            <div class="style" id="Verbal"></div>
+          </div>
+        </div>
+        <div class="level" id="High">
+          <div class="style" id="Secuencial">
+            <div class="style" id="Activo"></div>
+            <div class="style" id="Reflexivo"></div>
+            <div class="style" id="Sensorial"></div>
+            <div class="style" id="Intuitivo"></div>
+            <div class="style" id="Visual"></div>
+            <div class="style" id="Verbal"></div>
+          </div>
+          <div class="style" id="Global">
+            <div class="style" id="Activo"></div>
+            <div class="style" id="Reflexivo"></div>
+            <div class="style" id="Sensorial"></div>
+            <div class="style" id="Intuitivo"></div>
+            <div class="style" id="Visual"></div>
+            <div class="style" id="Verbal"></div>
+          </div>
+        </div>
+      </div>
+  
+  <script>
+    window.onload = function() {
+    cargarActividades();
+      
+    };
+
+    function cargarActividades() {
+        fetch('/Activity')
+          .then(response => response.json())
+          .then(data => {
+            var activityList = data.activity_list;
+            var styleList = data.style_list;
+            console.log(activityList, styleList)
+          })
+          .catch(error => console.error('Error al obtener las listas:', error));
+          
+      
+        }
+
+    
+    function cargarContenido(contenidoId, url) {
+      var contenido = document.getElementById(contenidoId);
+      var xhr = new XMLHttpRequest();
+      
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          contenido.innerHTML = xhr.responseText;
+          contenido.style.display = 'block';
+        }
+      };
+      
+      xhr.open('GET', url, true);
+      xhr.send();
+    }
+
+
+  </script>
+</body>
+</html>
