@@ -87,4 +87,6 @@ if __name__
     print(recommended_path, results)
     print(formatted_data)
     print(style)
-        
+
+
+      
