@@ -63,3 +63,28 @@ if __name__
             subtraction = max_score - min_score
             dominant_style = [styles for styles, score in styles_data.items() if score == max_score]
             results.append({'dominant_style': dominant_style, 'subtraction': subtraction})
+
+
+
+
+
+
+
+
+
+            formatted_data = []
+
+    for entry in recommended_path:
+        formatted_data.append([entry['goal'], entry['level'], entry['activity']])
+        
+    navi_perso = results[-1]['dominant_style']
+    
+    max_subtraction_style = max(results[:-1], key=lambda x: x["subtraction"])["dominant_style"]
+
+    style = [navi_perso, max_subtraction_style]
+             
+    
+    print(recommended_path, results)
+    print(formatted_data)
+    print(style)
+        

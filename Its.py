@@ -1,3 +1,5 @@
+import mysql.connector
+
 class IntelligentTutor:
     def __init__(self):
         self.student_progress = 0
@@ -47,60 +49,60 @@ class LearningGoals:
         self.goals = {
             "ClimateChangeFactors": {
                 "levels": {
-                    "Low": [
-                        {"name": "Activity 1", "completed": False},
-                        {"name": "Activity 2", "completed": False},
-                        {"name": "Activity 3", "completed": False}
+                    "low": [
+                        {"name": "t1", "completed": False},
+                        {"name": "t2", "completed": False},
+                        {"name": "t3", "completed": False}
                     ],
-                    "Medium": [
-                        {"name": "Activity 10", "completed": False},
-                        {"name": "Activity 11", "completed": False},
-                        {"name": "Activity 12", "completed": False}
+                    "medium": [
+                        {"name": "t10", "completed": False},
+                        {"name": "t11", "completed": False},
+                        {"name": "t12", "completed": False}
                     ],
-                    "High": [
-                        {"name": "Activity 19", "completed": False},
-                        {"name": "Activity 20", "completed": False},
-                        {"name": "Activity 21", "completed": False}
+                    "high": [
+                        {"name": "t19", "completed": False},
+                        {"name": "t20", "completed": False},
+                        {"name": "t21", "completed": False}
                     ]
                 }
             },
 
             "EnergyConservation": {
                 "levels": {
-                    "Low": [
-                        {"name": "Activity 4", "completed": False},
-                        {"name": "Activity 5", "completed": False},
-                        {"name": "Activity 6", "completed": False}
+                    "low": [
+                        {"name": "t4", "completed": False},
+                        {"name": "t5", "completed": False},
+                        {"name": "t6", "completed": False}
                     ],
-                    "Medium": [
-                        {"name": "Activity 13", "completed": False},
-                        {"name": "Activity 14", "completed": False},
-                        {"name": "Activity 15", "completed": False}
+                    "medium": [
+                        {"name": "t13", "completed": False},
+                        {"name": "t14", "completed": False},
+                        {"name": "t15", "completed": False}
                     ],
-                    "High": [
-                        {"name": "Activity 22", "completed": False},
-                        {"name": "Activity 23", "completed": False},
-                        {"name": "Activity 24", "completed": False}
+                    "high": [
+                        {"name": "t22", "completed": False},
+                        {"name": "t23", "completed": False},
+                        {"name": "t24", "completed": False}
                     ]
                 }
             },
 
             "PlasticReduction": {
                 "levels": {
-                    "Low": [
-                        {"name": "Activity 7", "completed": False},
-                        {"name": "Activity 8", "completed": False},
-                        {"name": "Activity 9", "completed": False}
+                    "low": [
+                        {"name": "t7", "completed": False},
+                        {"name": "t8", "completed": False},
+                        {"name": "t9", "completed": False}
                     ],
-                    "Medium": [
-                        {"name": "Activity 16", "completed": False},
-                        {"name": "Activity 17", "completed": False},
-                        {"name": "Activity 18", "completed": False}
+                    "medium": [
+                        {"name": "t16", "completed": False},
+                        {"name": "t17", "completed": False},
+                        {"name": "t18", "completed": False}
                     ],
-                    "High": [
-                        {"name": "Activity 25", "completed": False},
-                        {"name": "Activity 26", "completed": False},
-                        {"name": "Activity 27", "completed": False}
+                    "high": [
+                        {"name": "t25", "completed": False},
+                        {"name": "t26", "completed": False},
+                        {"name": "t27", "completed": False}
                     ]
                 }
             }
@@ -121,8 +123,8 @@ class LearningGoals:
                     if not activity["completed"]:
                         recommended_path.append({
                             "goal": goal_name,
-                            "level": level_name,
-                            "activity": activity["name"]
+                            "lvl": level_name,
+                            "name": activity["name"]
                     })
         return recommended_path
 
@@ -132,7 +134,7 @@ class LearningGoals:
         for goal_name, goal_data in self.goals.items():
             print(f"- {goal_name}:")
             for level, level_activities in goal_data["levels"].items():
-                print(f"  {level} Level:")
+                print(f"  {level} lvl:")
                 for activity in level_activities:
                     status = "Completed" if activity["completed"] else "Not Completed"
                     print(f"    {activity['name']}: {status}")
@@ -141,19 +143,19 @@ class LearningGoals:
 
     def calculate_learning_style_score(self, selected_styles):
         styles_data = {
-            'style_1': {
+            'perception': {
                 'Activo': 0,
                 'Reflexivo': 0
         },
-            'style_2': {
+            'processing': {
                 'Sensorial': 0,
                 'Intuitivo': 0
         },
-            'style_3': {
+            'reception': {
                 'Visual': 0,
                 'Verbal': 0
         },
-            'style_4': {
+            'nav': {
                 'Secuencial': 0,
                 'Global': 0
         },
@@ -167,13 +169,13 @@ class LearningGoals:
             styles_key = None
         
             if 'Activo' in style and 'Reflexivo' in style:
-                styles_key = 'style_1'
+                styles_key = 'perception'
             elif 'Sensorial' in style and 'Intuitivo' in style:
-                styles_key = 'style_2'
+                styles_key = 'processing'
             elif 'Visual' in style and 'Verbal' in style:
-                styles_key = 'style_3'
+                styles_key = 'reception'
             elif 'Secuencial' in style and 'Global' in style:
-                styles_key = 'style_4'
+                styles_key = 'nav'
         
             if styles_key is not None:
                 if response == 'a':
@@ -187,6 +189,88 @@ class LearningGoals:
             results.append({'style': style_key, 'dominant_style': dominant_style, 'subtraction': style_difference})
             
         return results
+    
+class LearningResource:
+    def __init__(self, host, user, password, database):
+        try:
+            self.connection = mysql.connector.connect(
+                host=host,
+                user=user,
+                password=password,
+                database=database
+            )
+            print("Connected to database successfully")
+            self.cursor = self.connection.cursor(buffered=True)
+        except mysql.connector.Error as err:
+            print("Error connecting to database:", err)
+
+    
+    def find_resource(self, recommended_path, combined_styles):
+        results = []
+        pt_values = []
+        
+
+        for entry in recommended_path:
+            name = entry['name']
+            goal = entry['goal']
+            lvl = entry['lvl']
+            query = (
+                "SELECT url, pt, lc FROM learningresource "
+                "WHERE name= %s AND goal= %s AND lvl= %s"
+            )
+            print("voy por las de", name, goal, lvl)
+            values = (name, goal, lvl)
+            self.cursor.execute(query, values)
+            results_for_entry = self.cursor.fetchall()
+            print('result', results_for_entry)
+
+            for result in results_for_entry: 
+                url, pt, lc = result
+                resource_info = {
+                    "name": name,
+                    "goal": goal,
+                    "lvl": lvl,
+                    "url": url,
+                    "pt": pt,
+                    "lc": lc
+            }
+                results.append(resource_info)
+            else:
+            
+                print("No resource found for:", name, goal, lvl)
+        
+        combined_style_values = [(style, dominant_style) for style, dominant_style in (cs.split(': ') for cs in combined_styles)]
+
+        for combined_style_value in combined_style_values:
+            style, dominant_style = combined_style_value
+            pt_values.append(dominant_style)
+
+        style_query = (
+            "SELECT pt FROM learningstyle "
+            "WHERE perception = %s AND processing = %s AND reception = %s"
+        )
+
+        values_styles = (pt_values[1], pt_values[0], pt_values[2])
+        print("values styles", values_styles)
+        self.cursor.execute(style_query, values_styles)
+        results_style_for_entry = self.cursor.fetchall()
+        print("result", results_style_for_entry)
+
+        print('pedagogic_tactic:', pt_values)
+        style_result_flat = [item[0] for item in results_style_for_entry]
+        print('flat', style_result_flat)
+
+
+        filtered_styles = [resource for resource in results if resource['pt'] in style_result_flat]
+
+        print("Final resources", filtered_styles)
+
+        return filtered_styles
+    
+    def close_connection(self):
+        self.cursor.close()
+        self.connection.close()
+
 
         
         
@@ -198,8 +282,8 @@ if __name__ == "__main__":
     learning_goals = LearningGoals()
     learning_goals.recommend_learning_path()
     learning_goals.print_learning_goals()
-
-
+    Learning_Resource = LearningResource()
+    Learning_Resource.find_resource
 
 
 

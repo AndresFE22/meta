@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recursos Encontrados</title>
+</head>
+<body>
+    <h1>Recursos Encontrados:</h1>
+    <ul>
+        {% for resource in resources %}
+            <li>
+                <h2>{{ resource.name }}</h2>
+                <p>Goal: {{ resource.goal }}</p>
+                <p>Level: {{ resource.lvl }}</p>
+                <p>PT: {{ resource.pt }}</p>
+                <p>LC: {{ resource.lc }}</p>
+                {% if resource.url.endswith('.jpg') %}
+                    <img src="{{ resource.url }}" alt="Imagen">
+                {% elif resource.url.endswith('.mp4') %}
+                    <video controls>
+                        <source src="{{ resource.url }}" type="video/mp4">
+                        Tu navegador no admite el elemento de video.
+                    </video>
+                {% elif resource.url.endswith('.txt') %}
+                    <iframe src="{{ resource.url }}"></iframe>
+                {% else %}
+                    <p>No se puede mostrar el recurso.</p>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</html>

@@ -1,12 +1,14 @@
 from flask import Flask, render_template, request, jsonify, session
-from Its import IntelligentTutor, LearningGoals
+from Its import IntelligentTutor, LearningGoals, LearningResource
 import json
 
-app = Flask(__name__)
+app = Flask(__name__,
+            static_folder='learning_resources')
 app.secret_key = 'your_secret_key'
 
-# Crea una instancia de LearningGoals
+# Crea una instancia
 learning_goals = LearningGoals()
+
 
 @app.route('/')
 def init():
@@ -24,33 +26,33 @@ def diagnosisStyles():
 @app.route('/diagnosis', methods=['POST'])
 def diagnosis_lowlvl():
     questions = [
-        {"activity_name": "Activity 1", "correct_answer": "a"},
-        {"activity_name": "Activity 2", "correct_answer": "c"},
-        {"activity_name": "Activity 3", "correct_answer": "a"},
-        {"activity_name": "Activity 4", "correct_answer": "d"},
-        {"activity_name": "Activity 5", "correct_answer": "a"},
-        {"activity_name": "Activity 6", "correct_answer": "d"},
-        {"activity_name": "Activity 7", "correct_answer": "b"},
-        {"activity_name": "Activity 8", "correct_answer": "b"},
-        {"activity_name": "Activity 9", "correct_answer": "c"},
-        {"activity_name": "Activity 10", "correct_answer": "a"},
-        {"activity_name": "Activity 11", "correct_answer": "c"},
-        {"activity_name": "Activity 12", "correct_answer": "a"},
-        {"activity_name": "Activity 13", "correct_answer": "d"},
-        {"activity_name": "Activity 14", "correct_answer": "a"},
-        {"activity_name": "Activity 15", "correct_answer": "d"},
-        {"activity_name": "Activity 16", "correct_answer": "b"},
-        {"activity_name": "Activity 17", "correct_answer": "b"},
-        {"activity_name": "Activity 18", "correct_answer": "c"},
-        {"activity_name": "Activity 19", "correct_answer": "a"},
-        {"activity_name": "Activity 20", "correct_answer": "c"},
-        {"activity_name": "Activity 21", "correct_answer": "a"},
-        {"activity_name": "Activity 22", "correct_answer": "d"},
-        {"activity_name": "Activity 23", "correct_answer": "a"},
-        {"activity_name": "Activity 24", "correct_answer": "d"},
-        {"activity_name": "Activity 25", "correct_answer": "b"},
-        {"activity_name": "Activity 26", "correct_answer": "b"},
-        {"activity_name": "Activity 27", "correct_answer": "c"}
+        {"activity_name": "t1", "correct_answer": "a"},
+        {"activity_name": "t2", "correct_answer": "c"},
+        {"activity_name": "t3", "correct_answer": "a"},
+        {"activity_name": "t4", "correct_answer": "d"},
+        {"activity_name": "t5", "correct_answer": "a"},
+        {"activity_name": "t6", "correct_answer": "d"},
+        {"activity_name": "t7", "correct_answer": "b"},
+        {"activity_name": "t8", "correct_answer": "b"},
+        {"activity_name": "t9", "correct_answer": "c"},
+        {"activity_name": "t10", "correct_answer": "a"},
+        {"activity_name": "t11", "correct_answer": "c"},
+        {"activity_name": "t12", "correct_answer": "a"},
+        {"activity_name": "t13", "correct_answer": "d"},
+        {"activity_name": "t14", "correct_answer": "a"},
+        {"activity_name": "t15", "correct_answer": "d"},
+        {"activity_name": "t16", "correct_answer": "b"},
+        {"activity_name": "t17", "correct_answer": "b"},
+        {"activity_name": "t18", "correct_answer": "c"},
+        {"activity_name": "t19", "correct_answer": "a"},
+        {"activity_name": "t20", "correct_answer": "c"},
+        {"activity_name": "t21", "correct_answer": "a"},
+        {"activity_name": "t22", "correct_answer": "d"},
+        {"activity_name": "t23", "correct_answer": "a"},
+        {"activity_name": "t24", "correct_answer": "d"},
+        {"activity_name": "t25", "correct_answer": "b"},
+        {"activity_name": "t26", "correct_answer": "b"},
+        {"activity_name": "t27", "correct_answer": "c"}
     ]
 
     for i in range(1, 28):
@@ -87,6 +89,7 @@ def testStyles():
         'Secuencial/Global': [4, 8, 12, 16, 20]
     }
     
+
     selected_styles = { }
     
     for ask, response in answers.items():
@@ -113,26 +116,37 @@ def testStyles():
 @app.route('/Activity', methods=['GET', 'POST'])
 def activity():
     recommended_path = session.get('recommended_path')
-    results = session.get('results')
-        
-    formatted_data = []
+    style_list_n = session.get('results')
+    last_item = style_list_n.pop()
+    style_list = style_list_n
+    nav_menu = last_item
 
-    for entry in recommended_path:
-        formatted_data.append([entry['goal'], entry['level'], entry['activity']])
+    combined_styles = []
+    for entry in style_list:
+        dominant_style = entry['dominant_style']
+        style = entry['style']
+        combined_style = f"{style}: {dominant_style}"
+        combined_styles.append(combined_style)
         
-    navi_perso = results[-1]['dominant_style']
-    
-    max_subtraction_style = max(results[:-1], key=lambda x: x["subtraction"])["dominant_style"]
+    print("style", style_list, "nav", nav_menu, "combined", combined_styles)
 
-    style = [navi_perso, max_subtraction_style]
-             
+    Learning_Resource = LearningResource('localhost', 'root', '', 'climate')
     
-    print(recommended_path, results)
-    print(formatted_data)
-    print(style)
-        
-    
-    return jsonify(activity_list=formatted_data, style_list=style) 
+    resource_list = Learning_Resource.find_resource(recommended_path, combined_styles)
+    print("list", resource_list)
+
+    for resource in resource_list:
+        print("Activity:", resource["name"])
+        print("Goal:", resource["goal"])
+        print("Level:", resource["lvl"])
+        print("URL:", resource["url"])
+        print("PT:", resource["pt"])
+        print("LC:", resource["lc"])
+
+    Learning_Resource.close_connection()
+
+
+    return render_template("activity.html", resources=resource_list)  # Return a valid JSON response
 
 
 
