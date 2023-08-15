@@ -203,6 +203,7 @@ class LearningResource:
             self.cursor = self.connection.cursor(buffered=True)
         except mysql.connector.Error as err:
             print("Error connecting to database:", err)
+                
 
     
     def find_resource(self, recommended_path, combined_styles):

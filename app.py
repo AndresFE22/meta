@@ -121,6 +121,8 @@ def activity():
     style_list = style_list_n
     nav_menu = last_item
 
+          
+
     combined_styles = []
     for entry in style_list:
         dominant_style = entry['dominant_style']
@@ -146,7 +148,7 @@ def activity():
     Learning_Resource.close_connection()
 
 
-    return render_template("activity.html", resources=resource_list)  # Return a valid JSON response
+    return render_template("activity.html", resources=resource_list, nav_menu=nav_menu)  # Return a valid JSON response
 
 
 

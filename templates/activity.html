@@ -5,9 +5,28 @@
 </head>
 <body>
     <h1>Recursos Encontrados:</h1>
+    {% if nav_menu == 'Secuencial' %}
+
+    <div class="sequential-navigation">
+
+        <button id="prevButton">&#9664;</button>
+        <button id="nextButton">&#9654;</button>
+    </div>
+    {% elif nav_menu == 'Global' %}
+    <!-- Navegación global -->
+    <div class="global-navigation">
+    {% elif nav_menu == 'Global' %} 
+    <div class="global-navigation">
+        <ul>
+            {% for resource in resources %}
+                <li><a href="#{{ resource.name }}">{{ resource.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
     <ul>
         {% for resource in resources %}
-            <li>
+            <li id="{{ resource.name }}">
                 <h2>{{ resource.name }}</h2>
                 <p>Goal: {{ resource.goal }}</p>
                 <p>Level: {{ resource.lvl }}</p>
@@ -28,4 +47,27 @@
             </li>
         {% endfor %}
     </ul>
+    <script>
+        // Navegación secuencial con flechas
+        var currentIndex = 0;
+        var resources = document.querySelectorAll('li');
+
+        document.getElementById('prevButton').addEventListener('click', function() {
+            if (currentIndex > 0) {
+                resources[currentIndex].style.display = 'none';
+                currentIndex--;
+                resources[currentIndex].style.display = 'block';
+            }
+        });
+
+        document.getElementById('nextButton').addEventListener('click', function() {
+            if (currentIndex < resources.length - 1) {
+                resources[currentIndex].style.display = 'none';
+                currentIndex++;
+                resources[currentIndex].style.display = 'block';
+            }
+        });
+   
+    </script>
+
 </html>
