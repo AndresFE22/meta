@@ -4,18 +4,19 @@
     <title>Main Template</title>
 </head>
 <body>
-    {{ nav_menu }}
-    {{ incorrect_answer }}
     {% if nav_menu == 'Secuencial' %}
     <div id="ActivitySequential" style="display: none;">{{ data_sequential|safe }}</div>
     {% elif nav_menu == 'Global' %}
     <div id="ActivityGlobal" style="display: none;">{{ data_global|safe }}</div>
     {% endif %}
+    evaluacion: 
+    <div id="diagnosisStateEvaluation" style="display: none;"> {{ data_incorrect_answer|safe }} </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var activitySequential = document.getElementById('ActivitySequential');
             var activityGlobal = document.getElementById('ActivityGlobal');
+            var diagnosisStateEvaluation = document.getElementById('diagnosisStateEvaluation');
             
             if (activitySequential) {
                 activitySequential.style.display = 'block';
@@ -23,18 +24,15 @@
             if (activityGlobal) {
                 activityGlobal.style.display = 'block';
             }
+            if (diagnosisStateEvaluation){
+                diagnosisStateEvaluation.style.display = 'block'
+            };
+           
+
         });
 
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                var incorrectAnswers = JSON.parse(xhr.responseText);
-                console.log(incorrectAnswers);
-                // ...
-            }
-        };
-        xhr.open('GET', '/Activity', true);
-        xhr.send();
+
+
     </script>
 </body>
 </html>

@@ -90,3 +90,25 @@ if __name__
 
 
       
+
+
+
+
+
+
+
+         function showQuestion(questionId) {
+            var slides = document.getElementsByClassName('question-slide');
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('active');
+            }
+            document.getElementById(questionId).classList.add('active');
+        };
+
+        function showNextLevel(nextFormId) {
+            var forms = document.querySelectorAll('.activity-form');
+            for (var i = 0; i < forms.length; i++) {
+                forms[i].classList.remove('active');
+            }
+            document.getElementById(nextFormId).classList.add('active');
+        }

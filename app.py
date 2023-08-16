@@ -130,8 +130,8 @@ def activity():
     style_list_n = session.get('results')
     last_item = style_list_n.pop()
     style_list = style_list_n
-    nav_menu = last_item['dominant_style']
-    #nav_menu = 'Secuencial'
+    #nav_menu = last_item['dominant_style']
+    nav_menu = 'Secuencial'
 
 
 
@@ -165,11 +165,11 @@ def activity():
 
     data_sequential = render_template("ActivitySequential.html", resources=resource_list)
     data_global = render_template("ActivityGlobal.html", resources=resource_list)
+    data_incorrect_answer = render_template('diagnosisStateEvaluation.html', incorrect_activities=incorrect_activities )
+    print("icorrect:", data_incorrect_answer)
 
-    incorrect_answer = json.dumps(incorrect_activities)
 
-
-    return render_template('Activity.html', nav_menu=nav_menu, data_sequential=data_sequential, data_global=data_global, incorrect_answer=incorrect_answer)
+    return render_template('Activity.html', nav_menu=nav_menu, data_sequential=data_sequential, data_global=data_global, data_incorrect_answer=data_incorrect_answer)
 
 
 if __name__ == '__main__':

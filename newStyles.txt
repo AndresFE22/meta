@@ -1,0 +1,2 @@
+'Intuitivo', 'Activo', 'Visual'
+
