@@ -264,9 +264,14 @@ class LearningResource:
 
         filtered_styles = [resource for resource in results if resource['pt'] in style_result_flat]
 
-        print("Final resources", filtered_styles)
+        level_order = {'low': 0, 'medium': 1, 'high': 2}
+        ordered_resources = sorted(filtered_styles, key=lambda x: level_order[x['lvl']])
 
-        return filtered_styles
+
+
+        print("Final resources", ordered_resources)
+
+        return ordered_resources
     
     def close_connection(self):
         self.cursor.close()

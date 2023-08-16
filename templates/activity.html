@@ -1,73 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Recursos Encontrados</title>
+    <title>Main Template</title>
 </head>
 <body>
-    <h1>Recursos Encontrados:</h1>
+    {{ nav_menu }}
+    {{ incorrect_answer }}
     {% if nav_menu == 'Secuencial' %}
-
-    <div class="sequential-navigation">
-
-        <button id="prevButton">&#9664;</button>
-        <button id="nextButton">&#9654;</button>
-    </div>
+    <div id="ActivitySequential" style="display: none;">{{ data_sequential|safe }}</div>
     {% elif nav_menu == 'Global' %}
-    <!-- Navegación global -->
-    <div class="global-navigation">
-    {% elif nav_menu == 'Global' %} 
-    <div class="global-navigation">
-        <ul>
-            {% for resource in resources %}
-                <li><a href="#{{ resource.name }}">{{ resource.name }}</a></li>
-            {% endfor %}
-        </ul>
-    </div>
+    <div id="ActivityGlobal" style="display: none;">{{ data_global|safe }}</div>
     {% endif %}
-    <ul>
-        {% for resource in resources %}
-            <li id="{{ resource.name }}">
-                <h2>{{ resource.name }}</h2>
-                <p>Goal: {{ resource.goal }}</p>
-                <p>Level: {{ resource.lvl }}</p>
-                <p>PT: {{ resource.pt }}</p>
-                <p>LC: {{ resource.lc }}</p>
-                {% if resource.url.endswith('.jpg') %}
-                    <img src="{{ resource.url }}" alt="Imagen">
-                {% elif resource.url.endswith('.mp4') %}
-                    <video controls>
-                        <source src="{{ resource.url }}" type="video/mp4">
-                        Tu navegador no admite el elemento de video.
-                    </video>
-                {% elif resource.url.endswith('.txt') %}
-                    <iframe src="{{ resource.url }}"></iframe>
-                {% else %}
-                    <p>No se puede mostrar el recurso.</p>
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
+
     <script>
-        // Navegación secuencial con flechas
-        var currentIndex = 0;
-        var resources = document.querySelectorAll('li');
-
-        document.getElementById('prevButton').addEventListener('click', function() {
-            if (currentIndex > 0) {
-                resources[currentIndex].style.display = 'none';
-                currentIndex--;
-                resources[currentIndex].style.display = 'block';
+        document.addEventListener('DOMContentLoaded', function() {
+            var activitySequential = document.getElementById('ActivitySequential');
+            var activityGlobal = document.getElementById('ActivityGlobal');
+            
+            if (activitySequential) {
+                activitySequential.style.display = 'block';
+            }
+            if (activityGlobal) {
+                activityGlobal.style.display = 'block';
             }
         });
 
-        document.getElementById('nextButton').addEventListener('click', function() {
-            if (currentIndex < resources.length - 1) {
-                resources[currentIndex].style.display = 'none';
-                currentIndex++;
-                resources[currentIndex].style.display = 'block';
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var incorrectAnswers = JSON.parse(xhr.responseText);
+                console.log(incorrectAnswers);
+                // ...
             }
-        });
-   
+        };
+        xhr.open('GET', '/Activity', true);
+        xhr.send();
     </script>
-
+</body>
 </html>

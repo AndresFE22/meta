@@ -93,23 +93,6 @@
       </div>
   
   <script>
-    window.onload = function() {
-    cargarActividades();
-      
-    };
-
-    function cargarActividades() {
-        fetch('/Activity')
-          .then(response => response.json())
-          .then(data => {
-            var activityList = data.activity_list;
-            var styleList = data.style_list;
-            console.log(activityList, styleList)
-          })
-          .catch(error => console.error('Error al obtener las listas:', error));
-          
-      
-        }
 
     
     function cargarContenido(contenidoId, url) {

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recursos Encontrados_s</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .slider-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .slider {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            width: 100%;
+            height: 500px;
+            position: relative;
+        }
+
+        .resource-card {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #ccc;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .resource-card.active {
+            display: flex;
+        }
+
+        .resource-data {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+    
+        }
+
+        .resource-data h2, p {
+            margin: 10px;
+        }
+
+        .resource-card img,
+        .resource-card video,
+        .resource-card iframe {
+            max-width: 100%;
+            max-height: 100%; /* Cambio aquí */
+        }
+
+        .prev-button,
+        .next-button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+            border-radius: 20px;
+        }
+
+        .prev-button {
+            margin-right: 10px;
+        }
+
+        .next-button {
+            margin-left: 10px;
+        }
+
+        .buttons button:hover {
+            background-color: #0078c9;
+            transform: scale(1.1);
+            transition: all 5ms ease;
+            
+
+
+        }
+    </style>
+</head>
+<body>
+    <h1>Recursos Encontrados_S:</h1>
+    <div class="slider-container">
+        <div class="slider">
+            {% for resource in resources %}
+            <div class="resource-card {% if loop.index == 1 %}active{% endif %}">
+                <div class="resource-data"> <!-- Nuevo div para datos -->
+                    <h2>{{ resource.name }}</h2>
+                    <p>Goal: {{ resource.goal }}</p>
+                    <p>Level: {{ resource.lvl }}</p>
+                    <p>PT: {{ resource.pt }}</p>
+                    <p>LC: {{ resource.lc }}</p>
+                </div>
+                {% if resource.url.endswith('.jpg') %}
+                <img src="{{ resource.url }}" alt="Imagen">
+                {% elif resource.url.endswith('.mp4') %}
+                <video controls>
+                    <source src="{{ resource.url }}" type="video/mp4">
+                    Tu navegador no admite el elemento de video.
+                </video>
+                {% elif resource.url.endswith('.txt') %}
+                <iframe src="{{ resource.url }}"></iframe>
+                {% else %}
+                <p>No se puede mostrar el recurso.</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        <div class="buttons">
+            <button class="prev-button">Anterior</button>
+            <button class="next-button">Siguiente</button>
+        </div>
+    </div>
+    <script>
+        const slider = document.querySelector('.slider');
+        const prevButton = document.querySelector('.prev-button');
+        const nextButton = document.querySelector('.next-button');
+        const cards = document.querySelectorAll('.resource-card');
+        let currentIndex = 0;
+
+        prevButton.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateSliderPosition();
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (currentIndex < cards.length - 1) {
+                currentIndex++;
+                updateSliderPosition();
+            }
+        });
+
+        function updateSliderPosition() {
+            cards.forEach(card => card.classList.remove('active'));
+            cards[currentIndex].classList.add('active');
+        }
+
+    </script>
+</body>
+</html>

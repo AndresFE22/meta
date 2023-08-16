@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, jsonify, session
+from flask import Flask, render_template, request, jsonify, session, redirect, render_template_string
 from Its import IntelligentTutor, LearningGoals, LearningResource
 import json
 
 app = Flask(__name__,
-            static_folder='learning_resources')
+            static_folder='learning_resources',
+            template_folder='templates')
 app.secret_key = 'your_secret_key'
 
 # Crea una instancia
@@ -55,6 +56,9 @@ def diagnosis_lowlvl():
         {"activity_name": "t27", "correct_answer": "c"}
     ]
 
+    incorrect_activities = {}
+    incorrect_answer = []
+    
     for i in range(1, 28):
         student_answer = request.form.get('student_answer' + str(i))
 
@@ -67,13 +71,19 @@ def diagnosis_lowlvl():
                 print("Correct Answer for", activity_name)
                 learning_goals.mark_activity_completed(activity_name)  
             else:
-                activity_name = question['activity_name']
                 print("Incorrect Answer for", activity_name)
+                incorrect_activities[activity_name] = student_answer
+
+    for activity_name, answer in incorrect_activities.items():
+        incorrect_answer.append(activity_name)
+
+            
         
     response = learning_goals.print_learning_goals()
     recommended_path = learning_goals.recommend_learning_path()
     
     session['recommended_path'] = recommended_path
+    session['incorrect_activities'] = incorrect_answer
 
     return render_template('response.html', response=response, recommended_path=recommended_path)
     
@@ -115,13 +125,15 @@ def testStyles():
 
 @app.route('/Activity', methods=['GET', 'POST'])
 def activity():
+    incorrect_activities = session.get('incorrect_activities')
     recommended_path = session.get('recommended_path')
     style_list_n = session.get('results')
     last_item = style_list_n.pop()
     style_list = style_list_n
-    nav_menu = last_item
+    nav_menu = last_item['dominant_style']
+    #nav_menu = 'Secuencial'
 
-          
+
 
     combined_styles = []
     for entry in style_list:
@@ -147,9 +159,17 @@ def activity():
 
     Learning_Resource.close_connection()
 
+    print('incorrect_activities', incorrect_activities)
 
-    return render_template("activity.html", resources=resource_list, nav_menu=nav_menu)  # Return a valid JSON response
+    
 
+    data_sequential = render_template("ActivitySequential.html", resources=resource_list)
+    data_global = render_template("ActivityGlobal.html", resources=resource_list)
+
+    incorrect_answer = json.dumps(incorrect_activities)
+
+
+    return render_template('Activity.html', nav_menu=nav_menu, data_sequential=data_sequential, data_global=data_global, incorrect_answer=incorrect_answer)
 
 
 if __name__ == '__main__':
