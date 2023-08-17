@@ -2,7 +2,20 @@
 <html>
 <head>
     <title>Test de Estilo de Aprendizaje</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css">    
     <style>
+
+        body {
+            display: grid;
+            margin: 0;
+            padding: 0;
+            background-image: url('/learning_resources/staticPage/13295527_5153829.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            place-items: center;
+        }
         .question-slide {
             display: none;
 
@@ -11,11 +24,49 @@
         .question-slide.active {
             display: block;
         }
+
+        .container {
+            background-color: rgb(255, 255, 255);
+            padding: 80px;
+            border-radius: 10px;
+            margin-top: 100px;
+            text-align: center;
+
+        }
+
+        
+        h1 {
+            font-weight: bold;
+            color:  rgba(0, 119, 255, 0.795);
+            margin-bottom: 40px;
+        }
+
+        label {
+            font-size: 16pt;
+            margin-bottom: 40px;
+
+        }
+
+        select {
+            width: 100%;
+            padding: .800rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            border: 1px solid #0066ff;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            margin-bottom: 45px;
+
+        }
+
     </style>
 </head>
 <body>
+    <div class="container">
     <h1>Test de Estilo de Aprendizaje</h1>
-    
     <form action="/test" method="post">
         <div class="question-slide active" id="question1" >
             <label for="pregunta1">1. Entiendo mejor algo:</label>
@@ -24,7 +75,7 @@
                 <option value="b">si pienso en ello.</option>
             </select>
             <br>
-            <input type="button" value="Siguiente" onclick="showQuestion('question2')">
+            <input type="button" class="btn btn-primary" value="Siguiente" onclick="showQuestion('question2')">
         </div>
         
         <div class="question-slide" id="question2">
@@ -34,7 +85,7 @@
                 <option value="b">innovador.</option>
             </select>
             <br>
-            <input type="button" value="Siguiente" onclick="showQuestion('question3')">
+            <input type="button" class="btn btn-primary" value="Siguiente" onclick="showQuestion('question3')">
         </div>
         
         <div class="question-slide" id="question3">
@@ -44,7 +95,7 @@
                 <option value="b">palabras.</option>
             </select>
             <br>
-            <input type="button" value="Siguiente" onclick="showQuestion('question4')">
+            <input type="button" class="btn btn-primary" value="Siguiente" onclick="showQuestion('question4')">
         </div>
         
         <div class="question-slide" id="question4">
@@ -64,7 +115,7 @@
                 <option value="b">pensar en ello.</option>
             </select>
             <br>
-            <input type="button" value="Siguiente" onclick="showQuestion('question6')">
+            <input type="button" class="btn btn-primary" value="Siguiente" onclick="showQuestion('question6')">
         </div>
         
         <div class="question-slide" id="question6">
@@ -74,7 +125,7 @@
                 <option value="b">que trate con ideas y teorías.</option>
             </select>
             <br>
-            <input type="button" value="Siguiente" onclick="showQuestion('question7')">
+            <input type="button" class="btn btn-primary" value="Siguiente" onclick="showQuestion('question7')">
         </div>
         
         <div class="question-slide" id="question7">
@@ -84,7 +135,7 @@
                 <option value="b">instrucciones escritas o información verbal.</option>
             </select>
             <br>
-            <input type="button" value="Siguiente" onclick="showQuestion('question8')">
+            <input type="button" class="btn btn-primary" value="Siguiente" onclick="showQuestion('question8')">
         </div>
         
         <div class="question-slide" id="question8">
@@ -94,7 +145,7 @@
                 <option value="b">el total de algo, entiendo como encajan sus partes.</option>
             </select>
             <br>
-            <input type="button" value="Siguiente" onclick="showQuestion('question9')">
+            <input type="button" class="btn btn-primary" value="Siguiente" onclick="showQuestion('question9')">
         </div>
         
         <div class="question-slide" id="question9">
@@ -104,7 +155,7 @@
                 <option value="b">no participe y solo escuche.</option>
             </select>
             <br>
-            <input type="button" value="Siguiente" onclick="showQuestion('question10')">
+            <input type="button" class="btn btn-primary" value="Siguiente" onclick="showQuestion('question10')">
         </div>
         
         <div class="question-slide" id="question10">
@@ -114,7 +165,7 @@
                 <option value="b">aprender conceptos.</option>
             </select>
             <br>
-            <input type="button" value="Siguiente" onclick="showQuestion('question11')">
+            <input type="button" class="btn btn-primary" value="Siguiente" onclick="showQuestion('question11')">
         </div>
         
         <div class="question-slide" id="question11">
@@ -124,7 +175,7 @@
                 <option value="b">me concentre en el texto escrito.</option>
             </select>
             <br>
-            <input type="button" value="Siguiente" onclick="showQuestion('question12')">
+            <input type="button" class="btn btn-primary" value="Siguiente" onclick="showQuestion('question12')">
         </div>
         
         <div class="question-slide" id="question12">
@@ -134,7 +185,7 @@
                 <option value="b">frecuentemente sé cuales son las soluciones, pero luego tengo dificultad para imaginarme los pasos para llegar a ellas.</option>
             </select>
             <br>
-            <input type="button" value="Siguiente" onclick="showQuestion('question13')">
+            <input type="button" class="btn btn-primary" value="Siguiente" onclick="showQuestion('question13')">
         </div>
         
         <div class="question-slide" id="question13">
@@ -144,7 +195,7 @@
                 <option value="b">raramente he llegado a saber como son muchos estudiantes.</option>
             </select>
             <br>
-            <input type="button" value="Siguiente" onclick="showQuestion('question14')">
+            <input type="button" class="btn btn-primary" value="Siguiente" onclick="showQuestion('question14')">
         </div>
         
         <div class="question-slide" id="question14">
@@ -154,7 +205,7 @@
                 <option value="b">algo que me dé nuevas ideas en que pensar.</option>
             </select>
             <br>
-            <input type="button" value="Siguiente" onclick="showQuestion('question15')">
+            <input type="button" class="btn btn-primary" value="Siguiente" onclick="showQuestion('question15')">
         </div>
         
         <div class="question-slide" id="question15">
@@ -164,7 +215,7 @@
                 <option value="b">que toman mucho tiempo para explicar.</option>
             </select>
             <br>
-            <input type="button" value="Siguiente" onclick="showQuestion('question16')">
+            <input type="button" class="btn btn-primary" value="Siguiente" onclick="showQuestion('question16')">
         </div>
         
         <div class="question-slide" id="question16">
@@ -174,7 +225,7 @@
                 <option value="b">me doy cuenta de cuales son los temas cuando termino de leer y luego tengo que regresar y encontrar los incidentes que los demuestran.</option>
             </select>
             <br>
-            <input type="button" value="Siguiente" onclick="showQuestion('question17')">
+            <input type="button" class="btn btn-primary" value="Siguiente" onclick="showQuestion('question17')">
         </div>
         
         <div class="question-slide" id="question17">
@@ -184,7 +235,7 @@
                 <option value="b">primero trate de entender completamente el problema.</option>
             </select>
             <br>
-            <input type="button" value="Siguiente" onclick="showQuestion('question18')">
+            <input type="button" class="btn btn-primary" value="Siguiente" onclick="showQuestion('question18')">
         </div>
         
         <div class="question-slide" id="question18">
@@ -194,7 +245,7 @@
                 <option value="b">teoría.</option>
             </select>
             <br>
-            <input type="button" value="Siguiente" onclick="showQuestion('question19')">
+            <input type="button" class="btn btn-primary" value="Siguiente" onclick="showQuestion('question19')">
         </div>
         
         <div class="question-slide" id="question19">
@@ -204,7 +255,7 @@
                 <option value="b">lo que oigo.</option>
             </select>
             <br>
-            <input type="button" value="Siguiente" onclick="showQuestion('question20')">
+            <input type="button" class="btn btn-primary" value="Siguiente" onclick="showQuestion('question20')">
         </div>
         
         <div class="question-slide" id="question20">
@@ -214,18 +265,40 @@
                 <option value="b">me dé un panorama general y relacione el material con otros temas.</option>
             </select>
             <br>
-            <input type="button" value="Siguiente" onclick="showQuestion('question21')">
+            <input type="button" class="btn btn-primary" value="Siguiente" onclick="showQuestion('question21')">
         </div>
 
         <div class="question-slide" id="question21">
             <h2>Test finalizado</h2>
             <br>
-            <input type="submit" value="Enviar">
-
+            <input type="button" class="btn btn-primary" value="Enviar" data-toggle="modal" data-target="#startModal">
+        </div>
+        <div class="modal fade" id="startModal" tabindex="-1" role="dialog" aria-labelledby="startModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="startModalLabel">Test finished</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>has finished the test, now you can see the result.<span class="mdi mdi-arrow-right-drop-circle" style="color: rgb(0, 119, 255);"></span>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <input type="submit" class="btn btn-primary" value="Ver resultados">
+                    </div>
+                </div>
+            </div>
         </div>
     </form>
+</div>
 </body>
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
     function showQuestion(questionId) {
         var slides = document.getElementsByClassName('question-slide');

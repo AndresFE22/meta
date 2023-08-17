@@ -356,12 +356,15 @@
                         <option value="c">Sewage</option>
                         <option value="d">Radioactive waste</option>
                     </select><br>
-                    <input type="button" value="Next" onclick="showQuestion('send');">
+                    <input type="button" value="Next" onclick="showQuestion('submit');">
                 </div>
             </div>
             <div class="question-slide" id="send">
-                <div class="question-slide-ii" id="send">
-                    <h2>Has finalizado el diagnóstico</h2>
+                <div class="question-slide-ii" id="submit">
+                    <h2>
+                    Has finalizado la evluacion
+                    <h2> 
+
                     <input type="submit" value="Submit">
                 </div>
             </div>
@@ -372,43 +375,64 @@
 
     <script>
 
-        var list = {{ incorrect_activities | tojson | safe }};
-        console.log("Lista:", list);
+var list = {{ incorrect_activities | tojson | safe }};
+console.log("Lista:", list);
 
-        var questionDivs = document.getElementsByClassName('question-slide');
+var questionDivs = document.getElementsByClassName('question-slide');
 
-        for (var i = 0; i < questionDivs.length; i++) {
-            var div = questionDivs[i]
-            var divId = div.id;
-            if (list.includes(divId)) {
-                div.style.display = 'block';
-                position = list.indexOf(divId) + 1 
-                var h2Element = div.querySelector('h2')
-                h2Element.innerHTML = 'Question' + ' ' + position + ':';
-        } else {
-            div.style.display = 'none'
-        }
-    }
-
- 
-    function showQuestion(questionId) {
-        var slides = document.getElementsByClassName('question-slide-ii');
-        var parentDivs = document.getElementsByClassName('question-slide');
-        
-        for (var i = 0; i < slides.length; i++) {
-            var computedStyle = window.getComputedStyle(parentDivs[i]);
-            
-            if (computedStyle.display !== 'none') {
-                slides[i].classList.remove('active');
-            }
-        }
-        
-        var nextSlide = document.getElementById(questionId);
-        if (nextSlide) {
-            nextSlide.classList.add('active');
-        }
-    }
+for (var i = 0; i < questionDivs.length; i++) {
+    var div = questionDivs[i];
+    var divId = div.id;
     
+    if (list.includes(divId)) {
+        div.style.display = 'block';
+    } else {
+        div.parentNode.removeChild(div);
+        reorganizeQuestionNumbers();  
+}
+function reorganizeQuestionNumbers() {
+    var remainingQuestionDivs = document.getElementsByClassName('question-slide');
+    for (var i = 0; i < remainingQuestionDivs.length; i++) {
+        var div = remainingQuestionDivs[i];
+        var h2Element = div.querySelector('h2');
+        var questionNumber = i + 1;
+        
+        if (div.id !== 'send') {
+            h2Element.innerHTML = 'Question ' + questionNumber + ':';
+        }
+    }
+}
+
+
+    function showQuestion(questionId) {
+    var slides = document.getElementsByClassName('question-slide-ii');
+    var currentIndex = -1;
+
+    for (var i = 0; i < slides.length; i++) {
+        if (slides[i].classList.contains('active')) {
+            currentIndex = i;
+            slides[i].classList.remove('active');
+            break;
+        }
+    }
+
+    var nextSlide = document.getElementById(questionId);
+    if (!nextSlide) {
+        var currentNumber = parseInt(questionId.match(/\d+/)[0]);
+        var nextNumber = currentNumber + 1;
+
+        while (!document.getElementById('question' + nextNumber)) {
+            nextNumber++;
+        }
+
+        nextSlide = document.getElementById('question' + nextNumber);
+    }
+
+    if (nextSlide) {
+        nextSlide.classList.add('active');
+    }
+}
+}
 
     </script>
 </body>

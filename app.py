@@ -19,11 +19,6 @@ def init():
 def diagnosisState():
     return render_template('diagnosisState.html')
 
-@app.route('/diagnosisStyles')
-def diagnosisStyles():
-    return render_template('diagnosisStyles.html')
-
-
 @app.route('/diagnosis', methods=['POST'])
 def diagnosis_lowlvl():
     questions = [
@@ -85,7 +80,7 @@ def diagnosis_lowlvl():
     session['recommended_path'] = recommended_path
     session['incorrect_activities'] = incorrect_answer
 
-    return render_template('response.html', response=response, recommended_path=recommended_path)
+    return render_template('diagnosisStyles.html')
     
 
 @app.route('/test', methods=['POST'])
@@ -122,7 +117,6 @@ def testStyles():
     return render_template("responsestyles.html", results=results)
 
 
-
 @app.route('/Activity', methods=['GET', 'POST'])
 def activity():
     incorrect_activities = session.get('incorrect_activities')
@@ -131,7 +125,9 @@ def activity():
     last_item = style_list_n.pop()
     style_list = style_list_n
     #nav_menu = last_item['dominant_style']
-    nav_menu = 'Secuencial'
+    #nav_menu = 'Secuencial'
+    nav_menu = 'Global'
+
 
 
 
@@ -162,14 +158,14 @@ def activity():
     print('incorrect_activities', incorrect_activities)
 
     
-
+    incorrect_activities.append('send')
     data_sequential = render_template("ActivitySequential.html", resources=resource_list)
     data_global = render_template("ActivityGlobal.html", resources=resource_list)
     data_incorrect_answer = render_template('diagnosisStateEvaluation.html', incorrect_activities=incorrect_activities )
     print("icorrect:", data_incorrect_answer)
 
 
-    return render_template('Activity.html', nav_menu=nav_menu, data_sequential=data_sequential, data_global=data_global, data_incorrect_answer=data_incorrect_answer)
+    return render_template('activity.html', nav_menu=nav_menu, data_sequential=data_sequential, data_global=data_global, data_incorrect_answer=data_incorrect_answer)
 
 
 if __name__ == '__main__':

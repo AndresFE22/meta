@@ -2,7 +2,19 @@
 <html>
 <head>
     <title>Activity 1: Identify Climate Change Factors</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css">
     <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('/learning_resources/staticPage/13295527_5153829.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+
+        }
         .question-slide {
             display: none;
         }
@@ -17,27 +29,74 @@
         .activity-form.active {
             display: block;
         }
+
+        h1 {
+            font-weight: bold;
+            color:  rgba(0, 119, 255, 0.795);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-weight: bold;
+            color:  rgba(22, 22, 22, 0.795);
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 15pt;
+            margin-bottom: 40px;
+
+
+
+        }
+
+        select {
+            width: 100%;
+            padding: .800rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            border: 1px solid #0066ff;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            margin-bottom: 45px;
+        }
+
+     
+        .container {
+            background-color: rgb(255, 255, 255);
+            padding: 80px;
+            border-radius: 10px;
+            margin-top: 100px;
+            text-align: center;
+            width: 60%;
+        }
+
     </style>
 </head>
 <body>
-    <div>
-        <form action="/diagnosis" method="post">
+    <form action="/diagnosis" method="post">
+    <div class="container">
+            <h1>Climate Change</h1>
         <div class="activity-form active" id="form1">
                 <div class="question-slide active" id="question1">
-                    <h1>Nivel Bajo</h1>
-                    <h2>Question 1:</h2>
+                    <h2>Question 1 <span class="mdi mdi-head-question"></span></h2> 
+
+
                     <label for="q1">Which gas is known as the "silent killer" because of its role in trapping heat in the atmosphere?</label><br>
-                    <select name="student_answer1">
+                    <select name="student_answer1" id="select">
                         <option value="a">Oxygen (O2)</option>
                         <option value="b">Nitrogen (N2)</option>
                         <option value="c">Carbon dioxide (CO2)</option>
                         <option value="d">Methane (CH4)</option>
                     </select><br>
-                    <input type="button" value="Next" onclick="showQuestion('question2')">
+                    <input type="button" class="btn btn-primary" id="Next-Question" value="Next Question" onclick="showQuestion('question2')">
                 </div>
                 
                 <div class="question-slide" id="question2">
-                    <h2>Question 2:</h2>
+                    <h2>Question 2 <span class="mdi mdi-head-question"></span></h2>
                     <label for="q2">What is deforestation?</label><br>
                     <select name="student_answer2">
                         <option value="a">The process of planting trees</option>
@@ -45,11 +104,11 @@
                         <option value="c">The removal of trees and forests</option>
                         <option value="d">The practice of recycling paper</option>
                     </select><br>
-                    <input type="button" value="Next" onclick="showQuestion('question3')">
+                    <input type="button" class="btn btn-primary" value="Next Question" onclick="showQuestion('question3')">
                 </div>
                 
                 <div class="question-slide" id="question3">
-                    <h2>Question 3:</h2>
+                    <h2>Question 3 <span class="mdi mdi-head-question"></span></h2>
                     <label for="q3">What is a major source of greenhouse gas emissions from human activities?</label><br>
                     <select name="student_answer3">
                         <option value="a">Volcanic eruptions</option>
@@ -57,11 +116,11 @@
                         <option value="c">Natural soil processes</option>
                         <option value="d">Deforestation</option>
                     </select><br>
-                    <input type="button" value="Next" onclick="showQuestion('question4')">
+                    <input type="button" class="btn btn-primary" value="Next Question" onclick="showQuestion('question4')">
                 </div>
                 
                 <div class="question-slide" id="question4">
-                    <h2>Question 4:</h2>
+                    <h2>Question 4 <span class="mdi mdi-head-question"></span></h2>
                     <label for="q4">What is a simple way to conserve energy in your home?</label><br>
                     <select name="student_answer4">
                         <option value="a">Leaving lights on when not needed</option>
@@ -69,11 +128,11 @@
                         <option value="c">Opening windows during cold weather</option>
                         <option value="d">Using a space heater in every room</option>
                     </select><br>
-                    <input type="button" value="Next" onclick="showQuestion('question5')">
+                    <input type="button" class="btn btn-primary" value="Next Question" onclick="showQuestion('question5')">
                 </div>
                 
                 <div class="question-slide" id="question5">
-                    <h2>Question 5:</h2>
+                    <h2>Question 5 <span class="mdi mdi-head-question"></span></h2>
                     <label for="q5">What does "energy efficiency" mean?</label><br>
                     <select name="student_answer5">
                         <option value="a">Using more energy than necessary</option>
@@ -81,11 +140,11 @@
                         <option value="c">Using less energy to accomplish the same tasks</option>
                         <option value="d">Using only renewable energy sources</option>
                     </select><br>
-                    <input type="button" value="Next" onclick="showQuestion('question6')">
+                    <input type="button" class="btn btn-primary" value="Next Question" onclick="showQuestion('question6')">
                 </div>
                 
                 <div class="question-slide" id="question6">
-                    <h2>Question 6:</h2>
+                    <h2>Question 6 <span class="mdi mdi-head-question"></span></h2>
                     <label for="q6">What is a benefit of using energy-efficient appliances?</label><br>
                     <select name="student_answer6">
                         <option value="a">Higher energy consumption</option>
@@ -93,11 +152,11 @@
                         <option value="c">Increased greenhouse gas emissions</option>
                         <option value="d">Greater dependence on fossil fuels</option>
                     </select><br>
-                    <input type="button" value="Next" onclick="showQuestion('question7')">
+                    <input type="button" class="btn btn-primary" value="Next Question" onclick="showQuestion('question7')">
                 </div>
                 
                 <div class="question-slide" id="question7">
-                    <h2>Question 7:</h2>
+                    <h2>Question 7 <span class="mdi mdi-head-question"></span></h2>
                     <label for="7">What is a common source of marine plastic pollution?</label><br>
                     <select name="student_answer7">
                         <option value="a">Volcanic eruptions</option>
@@ -105,11 +164,11 @@
                         <option value="c">Sewage</option>
                         <option value="d">Radioactive waste</option>
                     </select><br>
-                    <input type="button" value="Next" onclick="showQuestion('question8')">
+                    <input type="button" class="btn btn-primary" value="Next Question" onclick="showQuestion('question8')">
                 </div>
                 
                 <div class="question-slide" id="question8">
-                    <h2>Question 8:</h2>
+                    <h2>Question 8 <span class="mdi mdi-head-question"></span></h2>
                     <label for="8">What is one way to reduce plastic waste in your daily life?</label><br>
                     <select name="student_answer8">
                         <option value="a">Using disposable plastic bags</option>
@@ -117,11 +176,11 @@
                         <option value="c">Using a reusable water bottle</option>
                         <option value="d">Throwing plastic waste in the ocean</option>
                     </select><br>
-                    <input type="button" value="Next" onclick="showQuestion('question9')">
+                    <input type="button" class="btn btn-primary" value="Next Question" onclick="showQuestion('question9')">
                 </div>
                 
                 <div class="question-slide" id="question9">
-                    <h2>Question 9:</h2>
+                    <h2>Question 9 <span class="mdi mdi-head-question"></span></h2>
                     <label for="9">What are microplastics?</label><br>
                     <select name="student_answer9">
                         <option value="a">Large pieces of plastic waste found in oceans</option>
@@ -129,18 +188,17 @@
                         <option value="c">Tiny plastic particles that pollute the environment</option>
                         <option value="d">Biodegradable plastics</option>
                     </select><br>
-                    <input type="button" value="Next" onclick="showQuestion('nextlevel')">
+                    <input type="button" class="btn btn-primary" value="Finish level" onclick="showQuestion('nextlevel')">
                 </div>
 
                 <div class="question-slide" id="nextlevel">
-                    <h2>Has finalizado el nivel</h2>
-                    <input type="button" value="Next Level" onclick="showNextLevel('form2'); showQuestion('question10');">
+                    <h2>You have finished the low level, please continue to the next level</h2>
+                    <input type="button" class="btn btn-primary" value="Next Level" onclick="showNextLevel('form2'); showQuestion('question10');">
                 </div>
         </div>
         <div class="activity-form" id="form2">
                 <div class="question-slide" id="question10">
-                    <h1>Nivel medio</h1>
-                    <h2>Question 1:</h2>
+                    <h2>Question 1 <span class="mdi mdi-head-question"></span></h2>
                     <label for="q10">What is the primary greenhouse gas responsible for trapping heat in the Earth's atmosphere?</label><br>
                     <select name="student_answer10">
                         <option value="a">Carbon dioxide (CO2)</option>
@@ -148,11 +206,11 @@
                         <option value="c">Nitrous oxide (N2O)</option>
                         <option value="d">Water vapor (H2O)</option>
                     </select><br>
-                    <input type="button" value="Next" onclick="showQuestion('question11')">
+                    <input type="button" class="btn btn-primary" value="Next Question" onclick="showQuestion('question11')">
                 </div>
         
                 <div class="question-slide" id="question11">
-                    <h2>Question 2:</h2>
+                    <h2>Question 2 <span class="mdi mdi-head-question"></span></h2>
                     <label for="q11">Deforestation refers to the process of:</label><br>
                     <select name="student_answer11">
                         <option value="a">Increasing forest coverage</option>
@@ -160,11 +218,11 @@
                         <option value="c">Clearing or removing trees from an area</option>
                         <option value="d">Building structures within forests</option>
                     </select><br>
-                    <input type="button" value="Next" onclick="showQuestion('question12')">
+                    <input type="button" class="btn btn-primary" value="Next Question" onclick="showQuestion('question12')">
                 </div>
         
                 <div class="question-slide" id="question12">
-                    <h2>Question 3:</h2>
+                    <h2>Question 3 <span class="mdi mdi-head-question"></span></h2>
                     <label for="q12">Which of the following human activities contributes significantly to greenhouse gas emissions?</label><br>
                     <select name="student_answer12">
                         <option value="a">Walking and biking</option>
@@ -172,10 +230,10 @@
                         <option value="c">Burning fossil fuels for transportation</option>
                         <option value="d">Recycling paper and plastic</option>
                     </select><br>
-                    <input type="button" value="Next" onclick="showQuestion('question13')">
+                    <input type="button" class="btn btn-primary" value="Next Question" onclick="showQuestion('question13')">
                 </div>
                 <div class="question-slide" id="question13">
-                    <h2>Question 4:</h2>
+                    <h2>Question 4 <span class="mdi mdi-head-question"></span></h2>
                     <label for="q13">Which of the following is an effective way to conserve energy at home?</label><br>
                     <select name="student_answer13">
                         <option value="a">Leaving lights and electronics on when not in use</option>
@@ -183,11 +241,11 @@
                         <option value="c">Using energy-efficient appliances and light bulbs</option>
                         <option value="d">Opening windows and doors during cold weather</option>
                     </select><br>
-                    <input type="button" value="Next" onclick="showQuestion('question14')">
+                    <input type="button" class="btn btn-primary" value="Next Question" onclick="showQuestion('question14')">
                 </div>
                 
                 <div class="question-slide" id="question14">
-                    <h2>Question 5:</h2>
+                    <h2>Question 5 <span class="mdi mdi-head-question"></span></h2>
                     <label for="q14">What is the purpose of an energy audit?</label><br>
                     <select name="student_answer14">
                         <option value="a">To increase energy consumption</option>
@@ -195,11 +253,11 @@
                         <option value="c">To promote the use of fossil fuels</option>
                         <option value="d">To encourage deforestation</option>
                     </select><br>
-                    <input type="button" value="Next" onclick="showQuestion('question15')">
+                    <input type="button" class="btn btn-primary" value="Next Question" onclick="showQuestion('question15')">
                 </div>
                 
                 <div class="question-slide" id="question15">
-                    <h2>Question 6:</h2>
+                    <h2>Question 6 <span class="mdi mdi-head-question"></span></h2>
                     <label for="q15">Which of the following is a renewable source of energy?</label><br>
                     <select name="student_answer15">
                         <option value="a">Natural gas</option>
@@ -207,11 +265,11 @@
                         <option value="c">Wind power</option>
                         <option value="d">Nuclear power</option>
                     </select><br>
-                    <input type="button" value="Next" onclick="showQuestion('question16')">
+                    <input type="button" class="btn btn-primary" value="Next Question" onclick="showQuestion('question16')">
                 </div>
                 
                 <div class="question-slide" id="question16">
-                    <h2>Question 7:</h2>
+                    <h2>Question 7 <span class="mdi mdi-head-question"></span></h2>
                     <label for="q16">Which of the following is a common single-use plastic item that contributes to pollution?</label><br>
                     <select name="student_answer16">
                         <option value="a">Reusable water bottle</option>
@@ -219,11 +277,11 @@
                         <option value="c">Plastic straw</option>
                         <option value="d">Glass container</option>
                     </select><br>
-                    <input type="button" value="Next" onclick="showQuestion('question17')">
+                    <input type="button" class="btn btn-primary" value="Next Question" onclick="showQuestion('question17')">
                 </div>
                 
                 <div class="question-slide" id="question17">
-                    <h2>Question 8:</h2>
+                    <h2>Question 8 <span class="mdi mdi-head-question"></span></h2>
                     <label for="q17">Which of the following actions can help reduce plastic waste?</label><br>
                     <select name="student_answer17">
                         <option value="a">Using single-use plastic items</option>
@@ -231,11 +289,11 @@
                         <option value="c">Throwing plastic waste in rivers</option>
                         <option value="d">Ignoring plastic waste</option>
                     </select><br>
-                    <input type="button" value="Next" onclick="showQuestion('question18')">
+                    <input type="button" class="btn btn-primary" value="Next Question" onclick="showQuestion('question18')">
                 </div>
                 
                 <div class="question-slide" id="question18">
-                    <h2>Question 9:</h2>
+                    <h2>Question 9 <span class="mdi mdi-head-question"></span></h2>
                     <label for="q18">What are microplastics?</label><br>
                     <select name="student_answer18">
                         <option value="a">Large pieces of plastic waste found in oceans</option>
@@ -243,18 +301,17 @@
                         <option value="c">Tiny plastic particles that pollute the environment</option>
                         <option value="d">Biodegradable plastics</option>
                     </select><br>
-                    <input type="button" value="Next Level" onclick="showQuestion('nextlevel2')">
+                    <input type="button" class="btn btn-primary" value="Finish level" onclick="showQuestion('nextlevel2')">
                 </div>
 
                 <div class="question-slide" id="nextlevel2">
-                    <h2>Has finalizado el nivel</h2>
-                    <input type="button" value="Next Level" onclick="showNextLevel('form3'); showQuestion('question19');">
+                    <h2>You have finished the middle level, please continue to the next level</h2>
+                    <input type="button" class="btn btn-primary" value="Next Level" onclick="showNextLevel('form3'); showQuestion('question19');">
                 </div>
         </div>
         <div class="activity-form" id="form3">
                 <div class="question-slide" id="question19">
-                    <h1>Nivel Alto</h1>
-                    <h2>Question 1:</h2>
+                    <h2>Question 1 <span class="mdi mdi-head-question"></span></h2>
                     <label for="q19">Which of the following is a major greenhouse gas responsible for global warming?</label><br>
                     <select name="student_answer19">
                         <option value="a">Carbon dioxide (CO2)</option>
@@ -263,11 +320,11 @@
                         <option value="d">Water vapor (H2O)</option>
                     </select>
                     <br>
-                    <input type="button" value="Next" onclick="showQuestion('question20')">
+                    <input type="button" class="btn btn-primary" value="Next Question" onclick="showQuestion('question20')">
                 </div>
                 
                 <div class="question-slide" id="question20">
-                    <h2>Question 2:</h2>
+                    <h2>Question 2 <span class="mdi mdi-head-question"></span></h2>
                     <label for="q20">Which human activity is a major cause of deforestation?</label><br>
                     <select name="student_answer20">
                         <option value="a">Mining</option>
@@ -276,11 +333,11 @@
                         <option value="d">Air travel</option>
                     </select>
                     <br>
-                    <input type="button" value="Next" onclick="showQuestion('question21')">
+                    <input type="button" class="btn btn-primary" value="Next Question" onclick="showQuestion('question21')">
                 </div>
                 
                 <div class="question-slide" id="question21">
-                    <h2>Question 3:</h2>
+                    <h2>Question 3 <span class="mdi mdi-head-question"></span></h2>
                     <label for="q21">Which industry is a significant contributor to greenhouse gas emissions?</label><br>
                     <select name="student_answer21">
                         <option value="a">Fashion industry</option>
@@ -289,11 +346,11 @@
                         <option value="d">Education industry</option>
                     </select>
                     <br>
-                    <input type="button" value="Next" onclick="showQuestion('question22')">
+                    <input type="button" class="btn btn-primary" value="Next Question" onclick="showQuestion('question22')">
                 </div>
                 
                 <div class="question-slide" id="question22">
-                    <h2>Question 4:</h2>
+                    <h2>Question 4 <span class="mdi mdi-head-question"></span></h2>
                     <label for="q22">Which of the following is an example of energy-efficient lighting?</label><br>
                     <select name="student_answer22">
                         <option value="a">Incandescent light bulb</option>
@@ -302,11 +359,11 @@
                         <option value="d">Neon light</option>
                     </select>
                     <br>
-                    <input type="button" value="Next" onclick="showQuestion('question23')">
+                    <input type="button" class="btn btn-primary" value="Next Question" onclick="showQuestion('question23')">
                 </div>
                 
                 <div class="question-slide" id="question23">
-                    <h2>Question 5:</h2>
+                    <h2>Question 5 <span class="mdi mdi-head-question"></span></h2>
                     <label for="q24">What can you do to reduce energy consumption in your home?</label><br>
                     <select name="student_answer23">
                         <option value="a">Keep lights and appliances on when not in use</option>
@@ -315,11 +372,11 @@
                         <option value="d">Keep windows and doors open during hot days</option>
                     </select>
                     <br>
-                    <input type="button" value="Next" onclick="showQuestion('question24')">
+                    <input type="button" class="btn btn-primary" value="Next Question" onclick="showQuestion('question24')">
                 </div>
                 
                 <div class="question-slide" id="question24">
-                    <h2>Question 6:</h2>
+                    <h2>Question 6 <span class="mdi mdi-head-question"></span></h2>
                     <label for="q25">Which of the following is a renewable source of energy?</label><br>
                     <select name="student_answer24">
                         <option value="a">Natural gas</option>
@@ -328,11 +385,11 @@
                         <option value="d">Solar power</option>
                     </select>
                     <br>
-                    <input type="button" value="Next" onclick="showQuestion('question25')">
+                    <input type="button" class="btn btn-primary" value="Next Question" onclick="showQuestion('question25')">
                 </div>
                 
                 <div class="question-slide" id="question25">
-                    <h2>Question 7:</h2>
+                    <h2>Question 7 <span class="mdi mdi-head-question"></span></h2>
                     <label for="q7">Which of the following actions can help reduce plastic waste?</label><br>
                     <select name="student_answer25">
                         <option value="a">Using single-use plastic items</option>
@@ -341,11 +398,11 @@
                         <option value="d">Ignoring plastic waste</option>
                     </select>
                     <br>
-                    <input type="button" value="Next" onclick="showQuestion('question26')">
+                    <input type="button" class="btn btn-primary" id="Next Question" value="Next Question" onclick="showQuestion('question26')">
                 </div>
                 
                 <div class="question-slide" id="question26">
-                    <h2>Question 8:</h2>
+                    <h2>Question 8 <span class="mdi mdi-head-question"></span></h2>
                     <label for="q26">Which of the following is a commonly used plastic that contributes to pollution?</label><br>
                     <select name="student_answer26">
                         <option value="a">Polyethylene (PE)</option>
@@ -354,30 +411,55 @@
                         <option value="d">Glass</option>
                     </select>
                     <br>
-                    <input type="button" value="Next" onclick="showQuestion('question27')">
+                    <input type="button" class="btn btn-primary" value="Next Question" onclick="showQuestion('question27')">
                 </div>
                 
                 <div class="question-slide" id="question27">
-                    <h2>Question 9:</h2>
+                    <h2>Question 9 <span class="mdi mdi-head-question"></span></h2>
                     <label for="q27">Which of the following is a primary source of marine plastic pollution?</label><br>
-                    <select name="student_answer27">
+                    <select name="student_answer27" id="select">
                         <option value="a">Volcanic eruptions</option>
                         <option value="b">Medical waste</option>
                         <option value="c">Sewage</option>
                         <option value="d">Radioactive waste</option>
                     </select>
                     <br>
-                    <input type="button" value="Next" onclick="showQuestion('send');">
+                    <input type="button" class="btn btn-primary" value="Finish diagnosis" onclick="showQuestion('send');">
                 </div>
                 <div class="question-slide" id="send">
-                    <h2>Has finalizado el diagnóstico</h2>
-                    <input type="submit" value="Submit">
+                    <h2>You have finished the high level and you have finished the diagnosis. please press next</h2>
+                    <input type="button" class="btn btn-primary" value="Next" data-toggle="modal" data-target="#startModal">
                 </div>
-            </form>
+           
         </div>
-  
 
+        <div class="modal fade" id="startModal" tabindex="-1" role="dialog" aria-labelledby="startModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="startModalLabel">Ready! Now let's determine what your learning style is</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>You will take a test that will define what your learning styles are your learning styles <span class="mdi mdi-arrow-right-drop-circle" style="color: rgb(0, 119, 255);"></span>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <input type="submit" class="btn btn-primary" value="Start test">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+  
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
+        
         function showQuestion(questionId) {
             var slides = document.getElementsByClassName('question-slide');
             for (var i = 0; i < slides.length; i++) {
@@ -393,6 +475,8 @@
             }
             document.getElementById(nextFormId).classList.add('active');
         }
+
+
 
     </script>
 </body>

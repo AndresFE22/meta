@@ -112,3 +112,76 @@ if __name__
             }
             document.getElementById(nextFormId).classList.add('active');
         }
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Main Template</title>
+    <!-- Agrega los enlaces a Bootstrap CSS aquí -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .menu-tabs {
+            margin-top: 20px;
+        }
+        .menu-tabs .nav-item {
+            cursor: pointer;
+        }
+        .menu-tabs .nav-link.active {
+            font-weight: bold;
+        }
+        #ActivitySequential, #ActivityGlobal, #diagnosisStateEvaluation {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <ul class="nav nav-tabs menu-tabs">
+            {% if nav_menu == 'Secuencial' %}
+            <li class="nav-item">
+                <a class="nav-link active" id="sequentialTab">Secuencial</a>
+            </li>
+            {% elif nav_menu == 'Global' %}
+            <li class="nav-item">
+                <a class="nav-link active" id="globalTab">Global</a>
+            </li>
+            {% endif %}
+        </ul>
+        <div id="ActivitySequential">{{ data_sequential|safe }}</div>
+        <div id="ActivityGlobal">{{ data_global|safe }}</div>
+        <div id="diagnosisStateEvaluation">{{ data_incorrect_answer|safe }}</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var sequentialTab = document.getElementById('sequentialTab');
+            var globalTab = document.getElementById('globalTab');
+            var activitySequential = document.getElementById('ActivitySequential');
+            var activityGlobal = document.getElementById('ActivityGlobal');
+            var diagnosisStateEvaluation = document.getElementById('diagnosisStateEvaluation');
+            
+            sequentialTab.addEventListener('click', function() {
+                activitySequential.style.display = 'block';
+                activityGlobal.style.display = 'none';
+                diagnosisStateEvaluation.style.display = 'none';
+            });
+            
+            globalTab.addEventListener('click', function() {
+                activityGlobal.style.display = 'block';
+                activitySequential.style.display = 'none';
+                diagnosisStateEvaluation.style.display = 'none';
+            });
+
+        });
+    </script>
+</body>
+</html>

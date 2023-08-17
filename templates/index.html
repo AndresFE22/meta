@@ -3,14 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Intelligent Tutor System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css">
+    <style>
+ body {
+            margin: 0;
+            padding: 0;
+            background-image: url('/learning_resources/staticPage/13295527_5153829.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            color: white;
+
+        }
+        .container {
+            background-color: rgb(255, 255, 255);
+            padding: 80px;
+            border-radius: 10px;
+            margin-top: 100px;
+            text-align: center;
+        }
+        h1 {
+            color: rgba(0, 119, 255, 0.795);
+            font-weight: bold;
+            margin-bottom: 50px;
+            font-size: 30pt;
+
+        }
+        .start-button {
+            margin-top: 20px;
+        }
+        
+        .modal-title {
+            color: rgb(0, 119, 255);
+            font-weight: bold;
+        }
+
+        .container p {
+            color: rgb(34, 34, 34);
+            font-size: 20pt;
+            margin-bottom: 50px;
+        }
+
+       .modal-body {
+            color: rgb(34, 34, 34);
+            font-size: 15pt;
+        }
+
+        
+        </style>
 </head>
 <body>
-    Welcome to the Intelligent Tutor System!
-    <br>
-    Let's develop your problem-solving skills related to climate change.
+    <div class="container">
+        <h1>Welcome to the Intelligent Tutor System!</h1>
+        <p>Let's develop your problem-solving skills related to climate change.</p>
+        <button class="btn btn-primary btn-lg btn-start" data-toggle="modal" data-target="#startModal">
+            <span class="mdi mdi-play-circle"></span> START
+        </button>
+    </div>
 
-    <a href="/diagnosisrender"><button>Start state</button></a>
-    <a href="/diagnosisStyles"><button>Start styles</button></a>
+    <!-- Modal -->
+    <div class="modal fade" id="startModal" tabindex="-1" role="dialog" aria-labelledby="startModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="startModalLabel">Let's start with a diagnosis of the topic</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>When you start, some questions will appear to analyze your current state on the subject  <span class="mdi mdi-arrow-right-drop-circle" style="color: rgb(0, 119, 255);"></span>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <a href="/diagnosisrender" class="btn btn-primary">Start state</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="/diagnosisStyles" class="btn btn-secondary start-button" id="startStylesButton">Start styles</a>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
