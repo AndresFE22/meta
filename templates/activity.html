@@ -2,37 +2,72 @@
 <html>
 <head>
     <title>Main Template</title>
+    <!-- Agrega los enlaces a Bootstrap CSS aquí -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .menu-tabs {
+            margin-top: 20px;
+        }
+        .menu-tabs .nav-item {
+            cursor: pointer;
+        }
+        .menu-tabs .nav-link.active {
+            font-weight: bold;
+        }
+        #ActivitySequential, #ActivityGlobal, #diagnosisStateEvaluation {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    {% if nav_menu == 'Secuencial' %}
-    <div id="ActivitySequential" style="display: none;">{{ data_sequential|safe }}</div>
-    {% elif nav_menu == 'Global' %}
-    <div id="ActivityGlobal" style="display: none;">{{ data_global|safe }}</div>
-    {% endif %}
-    evaluacion: 
-    <div id="diagnosisStateEvaluation" style="display: none;"> {{ data_incorrect_answer|safe }} </div>
+    <div class="container">
+        <ul class="nav nav-tabs menu-tabs">
+            {% if nav_menu == 'Secuencial' %}
+            <li class="nav-item">
+                <a class="nav-link active" id="sequentialTab">Secuencial</a>
+            </li>
+            {% elif nav_menu == 'Global' %}
+            <li class="nav-item">
+                <a class="nav-link active" id="globalTab">Global</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+                <a class="nav-link" id="evaluationTab">Evaluación</a>
+            </li>
+        </ul>
+        <div id="ActivitySequential">{{ data_sequential|safe }}</div>
+        <div id="ActivityGlobal">{{ data_global|safe }}</div>
+        <div id="diagnosisStateEvaluation">{{ data_incorrect_answer|safe }}</div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            var sequentialTab = document.getElementById('sequentialTab');
+            var globalTab = document.getElementById('globalTab');
+            var evaluationTab = document.getElementById('evaluationTab');
             var activitySequential = document.getElementById('ActivitySequential');
             var activityGlobal = document.getElementById('ActivityGlobal');
             var diagnosisStateEvaluation = document.getElementById('diagnosisStateEvaluation');
             
-            if (activitySequential) {
+            sequentialTab.addEventListener('click', function() {
                 activitySequential.style.display = 'block';
-            }
-            if (activityGlobal) {
+                activityGlobal.style.display = 'none';
+                diagnosisStateEvaluation.style.display = 'none';
+            });
+            
+            globalTab.addEventListener('click', function() {
                 activityGlobal.style.display = 'block';
-            }
-            if (diagnosisStateEvaluation){
-                diagnosisStateEvaluation.style.display = 'block'
-            };
-           
+                activitySequential.style.display = 'none';
+                diagnosisStateEvaluation.style.display = 'none';
+            });
+            
+            evaluationTab.addEventListener('click', function() {
+                diagnosisStateEvaluation.style.display = 'block';
+                activitySequential.style.display = 'none';
+                activityGlobal.style.display = 'none';
+            });
 
         });
-
-
-
     </script>
 </body>
 </html>

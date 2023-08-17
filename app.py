@@ -125,8 +125,8 @@ def activity():
     last_item = style_list_n.pop()
     style_list = style_list_n
     #nav_menu = last_item['dominant_style']
-    #nav_menu = 'Secuencial'
-    nav_menu = 'Global'
+    nav_menu = 'Secuencial'
+    #nav_menu = 'Global'
 
 
 
